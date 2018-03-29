@@ -122,7 +122,7 @@ namespace Edytor2D {
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		label1->Text = "Coœ tam";
+		label1->Text = "Sajdak umyj siê";
 	}
 };
 }
