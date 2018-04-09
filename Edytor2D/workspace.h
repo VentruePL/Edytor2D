@@ -67,67 +67,6 @@ namespace Edytor2D {
 	private: System::ComponentModel::IContainer^  components;
 
 	private:
-
-	protected:
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-
-	protected:
-
-	protected:
-
-
-
-
-	protected:
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-
-
-	protected:
-
-
-
-
-	protected:
-
-	private:
 		/// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
