@@ -62,6 +62,8 @@ namespace Edytor2D {
 	private: System::Windows::Forms::ToolStripMenuItem^  kolorToolStripMenuItem;
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::ContextMenuStrip^  contextMenuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^  zapiszToolStripMenuItem;
+	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
 	private: System::ComponentModel::IContainer^  components;
 
 	private:
@@ -152,6 +154,7 @@ namespace Edytor2D {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->sajdakBaranToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->takToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->zapiszToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->obrazToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->skalowanieToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->obrótToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -167,6 +170,7 @@ namespace Edytor2D {
 			this->kolorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->toolStripContainer1->ContentPanel->SuspendLayout();
 			this->toolStripContainer1->LeftToolStripPanel->SuspendLayout();
 			this->toolStripContainer1->TopToolStripPanel->SuspendLayout();
@@ -293,7 +297,10 @@ namespace Edytor2D {
 			// 
 			// sajdakBaranToolStripMenuItem
 			// 
-			this->sajdakBaranToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->takToolStripMenuItem });
+			this->sajdakBaranToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->takToolStripMenuItem,
+					this->zapiszToolStripMenuItem
+			});
 			this->sajdakBaranToolStripMenuItem->Name = L"sajdakBaranToolStripMenuItem";
 			this->sajdakBaranToolStripMenuItem->Size = System::Drawing::Size(38, 20);
 			this->sajdakBaranToolStripMenuItem->Text = L"Plik";
@@ -304,6 +311,13 @@ namespace Edytor2D {
 			this->takToolStripMenuItem->Size = System::Drawing::Size(112, 22);
 			this->takToolStripMenuItem->Text = L"Otwórz";
 			this->takToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::takToolStripMenuItem_Click);
+			// 
+			// zapiszToolStripMenuItem
+			// 
+			this->zapiszToolStripMenuItem->Name = L"zapiszToolStripMenuItem";
+			this->zapiszToolStripMenuItem->Size = System::Drawing::Size(112, 22);
+			this->zapiszToolStripMenuItem->Text = L"Zapisz";
+			this->zapiszToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::zapiszToolStripMenuItem_Click);
 			// 
 			// obrazToolStripMenuItem
 			// 
@@ -397,12 +411,16 @@ namespace Edytor2D {
 			// 
 			// openFileDialog1
 			// 
-			this->openFileDialog1->Filter = L"Obrazy JPG|*.jpg|Obrazy BMP|*.bmp";
+			this->openFileDialog1->Filter = L"Obrazy JPG|*.jpg|Obrazy BMP|*.bmp|Obrazy PNG|*.png";
 			// 
 			// contextMenuStrip1
 			// 
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
-			this->contextMenuStrip1->Size = System::Drawing::Size(181, 26);
+			this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
+			// 
+			// saveFileDialog1
+			// 
+			this->saveFileDialog1->Filter = L"Obrazy JPG|*.jpg|Obrazy BMP|*.bmp|Obrazy PNG|*.png";
 			// 
 			// workspace
 			// 
@@ -478,13 +496,31 @@ private: System::Void takToolStripMenuItem_Click(System::Object^  sender, System
 		//pictureBox1->Image=FromFile(openFileDialog1->FileName,1);
 		//Image^ tmp = Image::FromFile(openFileDialog1->FileName, true);
 		//pictureBox1->Image = tmp;
-		String^ no=openFileDialog1->FileName;
-		std::string a;
-		MarshalString(no, a);
-		std::cout << a << std::endl;
+		//String^ no=openFileDialog1->FileName;
+		//std::string a;
+		//MarshalString(no, a);
+		//std::cout << a << std::endl;
 	}
 
 }
 
+private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	
+	if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		switch (saveFileDialog1->FilterIndex)
+		{
+		case 1:
+			pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Jpeg);
+			break;
+		case 2:
+			pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Bmp);
+			break;
+		case 3:
+			pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Png);
+			break;
+		}
+	}
+}
 };
 }
