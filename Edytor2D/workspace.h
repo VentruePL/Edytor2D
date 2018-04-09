@@ -72,9 +72,9 @@ namespace Edytor2D {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(82, 53);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->Size = System::Drawing::Size(28, 13);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"label1";
+			this->label1->Text = L"Test";
 			this->label1->Click += gcnew System::EventHandler(this, &workspace::label1_Click);
 			// 
 			// button2
