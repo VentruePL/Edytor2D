@@ -129,7 +129,7 @@ namespace Edytor2D {
 			// toolStripContainer1.ContentPanel
 			// 
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
-			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(918, 501);
+			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(910, 501);
 			// 
 			// toolStripContainer1.LeftToolStripPanel
 			// 
@@ -152,7 +152,7 @@ namespace Edytor2D {
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(918, 501);
+			this->pictureBox1->Size = System::Drawing::Size(910, 501);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
@@ -167,7 +167,7 @@ namespace Edytor2D {
 			});
 			this->toolStrip1->Location = System::Drawing::Point(0, 3);
 			this->toolStrip1->Name = L"toolStrip1";
-			this->toolStrip1->Size = System::Drawing::Size(24, 123);
+			this->toolStrip1->Size = System::Drawing::Size(32, 142);
 			this->toolStrip1->TabIndex = 0;
 			this->toolStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &workspace::toolStrip1_ItemClicked);
 			// 
@@ -177,8 +177,9 @@ namespace Edytor2D {
 			this->toolStripButton1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton1.Image")));
 			this->toolStripButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton1->Name = L"toolStripButton1";
-			this->toolStripButton1->Size = System::Drawing::Size(22, 20);
+			this->toolStripButton1->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton1->Text = L"toolStripButton1";
+			this->toolStripButton1->Click += gcnew System::EventHandler(this, &workspace::toolStripButton1_Click_1);
 			// 
 			// toolStripButton2
 			// 
@@ -186,7 +187,7 @@ namespace Edytor2D {
 			this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
 			this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton2->Name = L"toolStripButton2";
-			this->toolStripButton2->Size = System::Drawing::Size(22, 20);
+			this->toolStripButton2->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton2->Text = L"toolStripButton2";
 			// 
 			// toolStripButton3
@@ -195,7 +196,7 @@ namespace Edytor2D {
 			this->toolStripButton3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton3.Image")));
 			this->toolStripButton3->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton3->Name = L"toolStripButton3";
-			this->toolStripButton3->Size = System::Drawing::Size(22, 20);
+			this->toolStripButton3->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton3->Text = L"toolStripButton3";
 			// 
 			// toolStripButton5
@@ -204,13 +205,13 @@ namespace Edytor2D {
 			this->toolStripButton5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton5.Image")));
 			this->toolStripButton5->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton5->Name = L"toolStripButton5";
-			this->toolStripButton5->Size = System::Drawing::Size(22, 20);
+			this->toolStripButton5->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton5->Text = L"toolStripButton5";
 			// 
 			// toolStripButton4
 			// 
 			this->toolStripButton4->Name = L"toolStripButton4";
-			this->toolStripButton4->Size = System::Drawing::Size(22, 6);
+			this->toolStripButton4->Size = System::Drawing::Size(30, 6);
 			// 
 			// toolStripButton6
 			// 
@@ -218,7 +219,7 @@ namespace Edytor2D {
 			this->toolStripButton6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton6.Image")));
 			this->toolStripButton6->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton6->Name = L"toolStripButton6";
-			this->toolStripButton6->Size = System::Drawing::Size(22, 20);
+			this->toolStripButton6->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton6->Text = L"toolStripButton6";
 			// 
 			// menuStrip1
@@ -394,6 +395,18 @@ namespace Edytor2D {
 		os = chars;
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
+	Bitmap^ convert_image_bitmap(Image^ image)
+	{
+		Bitmap^ bitmapa;
+		//image = pictureBox1->Image;
+		bitmapa = gcnew Bitmap(image);
+		return bitmapa;
+	}
+
+	Image^ convert_bitmap_image(Bitmap^ bitmapa)
+	{
+		return bitmapa;
+	}
 
 	private: System::Void workspace_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
@@ -460,6 +473,9 @@ private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, Sys
 			break;
 		}
 	}
+}
+private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+	//pictureBox1->Image = convert_image_bitmap();
 }
 };
 }
