@@ -128,6 +128,7 @@ namespace Edytor2D {
 			// 
 			// toolStripContainer1.ContentPanel
 			// 
+			this->toolStripContainer1->ContentPanel->AutoScroll = true;
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
 			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(918, 501);
 			// 
@@ -148,12 +149,11 @@ namespace Edytor2D {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(918, 501);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -462,6 +462,8 @@ private: System::Void takToolStripMenuItem_Click(System::Object^  sender, System
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
 		pictureBox1->Image=Image::FromFile(openFileDialog1->FileName,true);
+		pictureBox1->Width = pictureBox1->Image->Width;//szer
+		pictureBox1->Height = pictureBox1->Image->Height;//wys
 		//pictureBox1->Image=FromFile(openFileDialog1->FileName,1);
 		//Image^ tmp = Image::FromFile(openFileDialog1->FileName, true);
 		//pictureBox1->Image = tmp;
