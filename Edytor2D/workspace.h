@@ -506,5 +506,5 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 }
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
-};
+};//sajda
 }
