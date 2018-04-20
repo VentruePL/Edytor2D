@@ -12,4 +12,5 @@ int main(array<String ^> ^argss) {
 	Edytor2D::workspace forma;
 	Application::Run(%forma);
 	return 0;
+	//test
 }
