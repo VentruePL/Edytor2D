@@ -505,6 +505,9 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 	set_icon_kolor();
 }
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	//hehehehhehehehehe
+
 }
 };
 }
