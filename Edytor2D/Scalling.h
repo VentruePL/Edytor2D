@@ -120,7 +120,7 @@ namespace Edytor2D {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(547, 188);
+			this->label3->Location = System::Drawing::Point(529, 88);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(0, 17);
 			this->label3->TabIndex = 5;
@@ -129,7 +129,7 @@ namespace Edytor2D {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(547, 235);
+			this->label4->Location = System::Drawing::Point(529, 137);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(0, 17);
 			this->label4->TabIndex = 6;

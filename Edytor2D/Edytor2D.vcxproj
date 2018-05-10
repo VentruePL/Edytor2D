@@ -133,10 +133,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Scalling.cpp" />
     <ClCompile Include="workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Rotation.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Scalling.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -145,6 +149,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Rotation.resx">
+      <DependentUpon>Rotation.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Scalling.resx">
       <DependentUpon>Scalling.h</DependentUpon>
     </EmbeddedResource>

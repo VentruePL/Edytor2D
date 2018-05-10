@@ -2,6 +2,7 @@
 
 //#include "stdAfx.h"
 #include "Scalling.h"
+#include "Rotation.h"
 
 namespace Edytor2D {
 
@@ -134,7 +135,7 @@ namespace Edytor2D {
 			// 
 			this->toolStripContainer1->ContentPanel->AutoScroll = true;
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
-			this->toolStripContainer1->ContentPanel->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->toolStripContainer1->ContentPanel->Margin = System::Windows::Forms::Padding(4);
 			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(1231, 618);
 			// 
 			// toolStripContainer1.LeftToolStripPanel
@@ -142,7 +143,7 @@ namespace Edytor2D {
 			this->toolStripContainer1->LeftToolStripPanel->Controls->Add(this->toolStrip1);
 			this->toolStripContainer1->LeftToolStripPanel->Click += gcnew System::EventHandler(this, &workspace::toolStripContainer1_LeftToolStripPanel_Click);
 			this->toolStripContainer1->Location = System::Drawing::Point(0, 0);
-			this->toolStripContainer1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->toolStripContainer1->Margin = System::Windows::Forms::Padding(4);
 			this->toolStripContainer1->Name = L"toolStripContainer1";
 			this->toolStripContainer1->RightToolStripPanelVisible = false;
 			this->toolStripContainer1->Size = System::Drawing::Size(1256, 646);
@@ -157,7 +158,7 @@ namespace Edytor2D {
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(1224, 617);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -302,6 +303,7 @@ namespace Edytor2D {
 			this->obrótToolStripMenuItem->Name = L"obrótToolStripMenuItem";
 			this->obrótToolStripMenuItem->Size = System::Drawing::Size(216, 26);
 			this->obrótToolStripMenuItem->Text = L"Obrót";
+			this->obrótToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::obrótToolStripMenuItem_Click);
 			// 
 			// koloryToolStripMenuItem
 			// 
@@ -385,7 +387,7 @@ namespace Edytor2D {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1256, 646);
 			this->Controls->Add(this->toolStripContainer1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"workspace";
 			this->Text = L"Edytor 2D";
 			this->Load += gcnew System::EventHandler(this, &workspace::workspace_Load);
@@ -523,6 +525,10 @@ private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender,
 
 }
 private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void obrótToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Rotation^ rt = gcnew Rotation();
+	rt->ShowDialog();
 }
 };
 }
