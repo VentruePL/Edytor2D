@@ -133,14 +133,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="szum.cpp" />
     <ClCompile Include="workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="szum.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="workspace.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="szum.resx">
+      <DependentUpon>szum.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="workspace.resx">
       <DependentUpon>workspace.h</DependentUpon>
     </EmbeddedResource>
