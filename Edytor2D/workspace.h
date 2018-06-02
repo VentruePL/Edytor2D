@@ -2,6 +2,7 @@
 
 #include "szum.h"
 #include "wyostrz.h"
+#include "farba.h"
 
 namespace Edytor2D {
 
@@ -351,15 +352,16 @@ namespace Edytor2D {
 			// toolStripMenuItem3
 			// 
 			this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
-			this->toolStripMenuItem3->Size = System::Drawing::Size(214, 22);
-			this->toolStripMenuItem3->Text = L"Wyostrzanie";
+			this->toolStripMenuItem3->Size = System::Drawing::Size(234, 22);
+			this->toolStripMenuItem3->Text = L"Wyostrzanie (Usuñ œredni¹)";
 			this->toolStripMenuItem3->Click += gcnew System::EventHandler(this, &workspace::toolStripMenuItem3_Click);
 			// 
 			// toolStripMenuItem4
 			// 
 			this->toolStripMenuItem4->Name = L"toolStripMenuItem4";
-			this->toolStripMenuItem4->Size = System::Drawing::Size(214, 22);
-			this->toolStripMenuItem4->Text = L"Rozmycie ";
+			this->toolStripMenuItem4->Size = System::Drawing::Size(234, 22);
+			this->toolStripMenuItem4->Text = L"Filtr farb olejnych (Minimalny)";
+			this->toolStripMenuItem4->Click += gcnew System::EventHandler(this, &workspace::toolStripMenuItem4_Click);
 			// 
 			// openFileDialog1
 			// 
@@ -528,6 +530,13 @@ private: System::Void toolStripMenuItem3_Click(System::Object^  sender, System::
 	wyostrz^ wyostrz_f = gcnew wyostrz(wyostrz_bit);
 	wyostrz_f->ShowDialog();
 	pictureBox1->Image = convert_bitmap_image(wyostrz_f->test);
+}
+private: System::Void toolStripMenuItem4_Click(System::Object^  sender, System::EventArgs^  e) {
+	Bitmap^ farba_bit = convert_image_bitmap(pictureBox1->Image);
+
+	farba^ farba_f = gcnew farba(farba_bit);
+	farba_f->ShowDialog();
+	pictureBox1->Image = convert_bitmap_image(farba_f->test);
 }
 };
 }

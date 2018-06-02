@@ -24,6 +24,9 @@
     <ClCompile Include="wyostrz.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="farba.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="workspace.h">
@@ -35,12 +38,18 @@
     <ClInclude Include="wyostrz.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="farba.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="workspace.resx">
       <Filter>Pliki zasobów</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="szum.resx">
+      <Filter>Pliki zasobów</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wyostrz.resx">
       <Filter>Pliki zasobów</Filter>
     </EmbeddedResource>
   </ItemGroup>

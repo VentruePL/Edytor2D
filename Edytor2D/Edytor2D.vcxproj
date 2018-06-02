@@ -133,11 +133,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="farba.cpp" />
     <ClCompile Include="szum.cpp" />
     <ClCompile Include="workspace.cpp" />
     <ClCompile Include="wyostrz.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="farba.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="szum.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -149,6 +153,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="farba.resx">
+      <DependentUpon>farba.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="szum.resx">
       <DependentUpon>szum.h</DependentUpon>
     </EmbeddedResource>
