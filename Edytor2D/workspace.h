@@ -1,6 +1,7 @@
 #pragma once
 
 #include "szum.h"
+#include "wyostrz.h"
 
 namespace Edytor2D {
 
@@ -352,6 +353,7 @@ namespace Edytor2D {
 			this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
 			this->toolStripMenuItem3->Size = System::Drawing::Size(214, 22);
 			this->toolStripMenuItem3->Text = L"Wyostrzanie";
+			this->toolStripMenuItem3->Click += gcnew System::EventHandler(this, &workspace::toolStripMenuItem3_Click);
 			// 
 			// toolStripMenuItem4
 			// 
@@ -520,5 +522,12 @@ private: System::Void toolStripMenuItem2_Click(System::Object^  sender, System::
 	pictureBox1->Image = convert_bitmap_image(szum_f->test);
 }
 
+private: System::Void toolStripMenuItem3_Click(System::Object^  sender, System::EventArgs^  e) {
+	Bitmap^ wyostrz_bit = convert_image_bitmap(pictureBox1->Image);
+
+	wyostrz^ wyostrz_f = gcnew wyostrz(wyostrz_bit);
+	wyostrz_f->ShowDialog();
+	pictureBox1->Image = convert_bitmap_image(wyostrz_f->test);
+}
 };
 }

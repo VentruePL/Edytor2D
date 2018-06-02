@@ -135,12 +135,16 @@
   <ItemGroup>
     <ClCompile Include="szum.cpp" />
     <ClCompile Include="workspace.cpp" />
+    <ClCompile Include="wyostrz.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="szum.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="workspace.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="wyostrz.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -150,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="workspace.resx">
       <DependentUpon>workspace.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wyostrz.resx">
+      <DependentUpon>wyostrz.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
