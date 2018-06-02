@@ -420,6 +420,7 @@ namespace Edytor2D {
 
 	Color wybrany_kolor = Color::FromArgb(0, 0, 0);
 	
+
 	void set_icon_kolor()
 	{
 		Bitmap^ tmp = convert_image_bitmap(toolStripButton6->Image);
@@ -502,17 +503,22 @@ private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, Sys
 	}
 }
 private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-	//pictureBox1->Image = convert_image_bitmap();
-	//Image^ test = convert_image_bitmap(pictureBox1->Image); test
+
 }
 private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
 	set_icon_kolor();
 }
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
+
+
 private: System::Void toolStripMenuItem2_Click(System::Object^  sender, System::EventArgs^  e) {
-	szum^ sc = gcnew szum();
-	sc->ShowDialog();
+	Bitmap^ szum_bit = convert_image_bitmap(pictureBox1->Image);
+
+	szum^ szum_f = gcnew szum(szum_bit);
+	szum_f->ShowDialog();
+	pictureBox1->Image = convert_bitmap_image(szum_f->test);
 }
+
 };
 }
