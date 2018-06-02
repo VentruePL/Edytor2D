@@ -309,25 +309,25 @@ namespace Edytor2D {
 			// wymyœlToolStripMenuItem
 			// 
 			this->wymyœlToolStripMenuItem->Name = L"wymyœlToolStripMenuItem";
-			this->wymyœlToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->wymyœlToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->wymyœlToolStripMenuItem->Text = L"Wymyœl";
 			// 
 			// seToolStripMenuItem
 			// 
 			this->seToolStripMenuItem->Name = L"seToolStripMenuItem";
-			this->seToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->seToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->seToolStripMenuItem->Text = L"Se";
 			// 
 			// coœToolStripMenuItem
 			// 
 			this->coœToolStripMenuItem->Name = L"coœToolStripMenuItem";
-			this->coœToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->coœToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->coœToolStripMenuItem->Text = L"Coœ";
 			// 
 			// bartekToolStripMenuItem
 			// 
 			this->bartekToolStripMenuItem->Name = L"bartekToolStripMenuItem";
-			this->bartekToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->bartekToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->bartekToolStripMenuItem->Text = L"Bartek";
 			// 
 			// filtryToolStripMenuItem
@@ -343,20 +343,20 @@ namespace Edytor2D {
 			// toolStripMenuItem2
 			// 
 			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
-			this->toolStripMenuItem2->Size = System::Drawing::Size(180, 22);
-			this->toolStripMenuItem2->Text = L"Korekcja szumu";
+			this->toolStripMenuItem2->Size = System::Drawing::Size(214, 22);
+			this->toolStripMenuItem2->Text = L"Korekcja szumu (Mediana)";
 			this->toolStripMenuItem2->Click += gcnew System::EventHandler(this, &workspace::toolStripMenuItem2_Click);
 			// 
 			// toolStripMenuItem3
 			// 
 			this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
-			this->toolStripMenuItem3->Size = System::Drawing::Size(180, 22);
+			this->toolStripMenuItem3->Size = System::Drawing::Size(214, 22);
 			this->toolStripMenuItem3->Text = L"Wyostrzanie";
 			// 
 			// toolStripMenuItem4
 			// 
 			this->toolStripMenuItem4->Name = L"toolStripMenuItem4";
-			this->toolStripMenuItem4->Size = System::Drawing::Size(180, 22);
+			this->toolStripMenuItem4->Size = System::Drawing::Size(214, 22);
 			this->toolStripMenuItem4->Text = L"Rozmycie ";
 			// 
 			// openFileDialog1

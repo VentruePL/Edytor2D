@@ -51,6 +51,10 @@ namespace Edytor2D {
 		}
 
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Label^  label1;
+
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TrackBar^  trackBar1;
 	protected:
 
 	private:
@@ -67,8 +71,11 @@ namespace Edytor2D {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->SuspendLayout();
-			
 			// 
 			// button1
 			// 
@@ -80,11 +87,54 @@ namespace Edytor2D {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &szum::button1_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label1->Location = System::Drawing::Point(7, 20);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(108, 29);
+			this->label1->TabIndex = 2;
+			this->label1->Text = L"Promieñ";
+			// 
+			// trackBar1
+			// 
+			this->trackBar1->AutoSize = false;
+			this->trackBar1->BackColor = System::Drawing::SystemColors::Control;
+			this->trackBar1->LargeChange = 2;
+			this->trackBar1->Location = System::Drawing::Point(12, 80);
+			this->trackBar1->Maximum = 11;
+			this->trackBar1->Minimum = 3;
+			this->trackBar1->Name = L"trackBar1";
+			this->trackBar1->Size = System::Drawing::Size(465, 45);
+			this->trackBar1->SmallChange = 2;
+			this->trackBar1->TabIndex = 5;
+			this->trackBar1->TickFrequency = 2;
+			this->trackBar1->TickStyle = System::Windows::Forms::TickStyle::TopLeft;
+			this->trackBar1->Value = 3;
+			this->trackBar1->Scroll += gcnew System::EventHandler(this, &szum::trackBar1_Scroll);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Enabled = false;
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->textBox1->Location = System::Drawing::Point(195, 24);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(228, 26);
+			this->textBox1->TabIndex = 4;
+			this->textBox1->Text = L"3";
+			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
 			// szum
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(489, 192);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->trackBar1);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MaximizeBox = false;
@@ -92,8 +142,9 @@ namespace Edytor2D {
 			this->Name = L"szum";
 			this->ShowIcon = false;
 			this->Text = L"Korekcja szumu";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
 			this->ResumeLayout(false);
-	
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -166,24 +217,40 @@ namespace Edytor2D {
 				blue_T[i][j] = kol->B;
 			}
 		}
-
+		//std::cout << Size << std::endl;
 		int  m;
 		int *rval, *gval, *bval;
-		rval = (int*)malloc(Size*Size * sizeof(int));
-		gval = (int*)malloc(Size*Size * sizeof(int));
-		bval = (int*)malloc(Size*Size * sizeof(int));
+		rval = (int*)malloc((Size*Size *Size) * sizeof(int));
+		gval = (int*)malloc((Size*Size * Size) * sizeof(int));
+		bval = (int*)malloc((Size*Size * Size) * sizeof(int));
 		int margin = ((Size - 1) / 2);
+		margin = 1;
 
-		for (int i = margin; i<test->Width - margin; i++)
-			for (int j = margin; j<test->Height - margin; j++)
+		//std::cout << margin << std::endl;
+		for (int i = 0; i<test->Width; i++)//od margin do width minus margin
+			for (int j = 0; j<test->Height; j++)//od margin do height minus margin
 			{
 				m = 0;
 				for (int k = 0; k<Size; k++)
 					for (int l = 0; l<Size; l++)
 					{
-						rval[m] = red_T[i + k - margin][j + l - margin];
-						gval[m] = green_T[i + k - margin][j + l - margin];
-						bval[m] = blue_T[i + k - margin][j + l - margin];
+						int lewakomora = i + k;//szer w
+						int prawakomora = j + l;//wys h
+						//std::cout << lewakomora << " " << prawakomora << std::endl;
+
+						if (prawakomora >= test->Height)
+						{
+							prawakomora = test->Height - margin;
+						}
+
+						if (lewakomora >= test->Width)
+						{
+							lewakomora = test->Width - margin;
+						}
+
+						rval[m] = red_T[lewakomora][prawakomora];
+						gval[m] = green_T[lewakomora][prawakomora];
+						bval[m] = blue_T[lewakomora][prawakomora];
 						m++;
 					}
 
@@ -204,5 +271,15 @@ namespace Edytor2D {
 		delete[] bval;
 		this->Close();
 	}
-	};
+	private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
+
+		if (trackBar1->Value % 2 == 0)
+		{
+			trackBar1->Value += 1;
+		}
+		textBox1->Text = System::Convert::ToString(trackBar1->Value);
+		Size = trackBar1->Value;
+
+	}
+};
 }
