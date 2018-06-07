@@ -174,7 +174,6 @@ namespace Edytor2D {
 			this->toolStrip1->Size = System::Drawing::Size(24, 146);
 			this->toolStrip1->TabIndex = 0;
 			this->toolStrip1->Text = L"Raz";
-			this->toolStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &workspace::toolStrip1_ItemClicked);
 			// 
 			// toolStripButton1
 			// 

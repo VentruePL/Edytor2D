@@ -18,6 +18,7 @@ namespace Edytor2D {
 
 		DrawForm(void){
 			InitializeComponent();
+
 			brushSize = 2;
 			pen = gcnew Pen(Color::Black);
 			//gfx->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
@@ -58,7 +59,8 @@ namespace Edytor2D {
 	private: System::Windows::Forms::ColorDialog^  colorDialog1;
 
 
-
+	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::Label^  label1;
 
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -78,6 +80,8 @@ namespace Edytor2D {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -122,13 +126,37 @@ namespace Edytor2D {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &DrawForm::button2_Click);
 			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
+				L"2", L"4", L"6", L"8", L"10", L"12", L"14", L"16",
+					L"18", L"20", L"22"
+			});
+			this->comboBox1->Location = System::Drawing::Point(215, 15);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->TabIndex = 7;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &DrawForm::comboBox1_SelectedIndexChanged);
+			// 
+			// label1
+			// 
+			this->label1->BackColor = System::Drawing::Color::Black;
+			this->label1->Location = System::Drawing::Point(111, 13);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(30, 23);
+			this->label1->TabIndex = 2;
+			this->label1->Text = L" ";
+			// 
 			// DrawForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(999, 577);
+			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->panel2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"DrawForm";
 			this->Text = L"DrawForm";
@@ -144,10 +172,10 @@ namespace Edytor2D {
 
 	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 		if (e->Button == System::Windows::Forms::MouseButtons::Left) {
-			
-				gfx->DrawLine(pen, point, e->Location);
-			
-
+			gfx->DrawLine(pen, point, e->Location);
+	
+			//gfx->DrawLine(pen, point, e->Location);
+			//gfx->FillEllipse(brush, e->X, e->Y, 5, 5);
 			point = e->Location;
 			
 			pictureBox1->Refresh();
@@ -158,6 +186,45 @@ namespace Edytor2D {
 		pictureBox1->Refresh();
 	}
 
+	
 
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		switch (comboBox1->SelectedIndex) {
+			case 0:
+				brushSize = 2;
+				break;
+			case 1:
+				brushSize = 4;
+				break;
+			case 2:
+				brushSize = 6;
+				break;
+			case 3:
+				brushSize = 8;
+				break;
+			case 4:
+				brushSize = 10;
+				break;
+			case 5:
+				brushSize = 12;
+				break;
+			case 6:
+				brushSize = 14;
+				break;
+			case 7:
+				brushSize = 16;
+				break;
+			case 8:
+				brushSize = 18;
+				break;
+			case 9:
+				brushSize = 20;
+				break;
+			case 10:
+				brushSize = 22;
+				break;
+		}
+		pen->Width = brushSize;
+}
 };
 }
