@@ -43,5 +43,8 @@
     <EmbeddedResource Include="Scalling.resx">
       <Filter>Pliki zasobów</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rotation.resx">
+      <Filter>Pliki zasobów</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
