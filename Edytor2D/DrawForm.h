@@ -25,6 +25,10 @@ namespace Edytor2D {
 			pen->Width = brushSize;
 			point = Point(0, 0);
 
+			eraser = gcnew Pen(Color::Red);
+			eraser->Width = brushSize;
+
+			
 				
 			pictureBox1->Image = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
 			gfx = Graphics::FromImage(pictureBox1->Image);	
@@ -45,7 +49,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Panel^  panel1;
 	protected:
 
-
+	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Panel^  panel2;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 
@@ -54,8 +58,10 @@ namespace Edytor2D {
 		Point point;
 		Pen ^ pen;
 		Brush ^ brush;
+		Pen ^ eraser;
 		bool isBrush = false;
 		bool isPen = false;
+		bool isEraser = false;
 		int brushSize;
 
 	private: System::Windows::Forms::Button^  button2;
@@ -64,6 +70,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::Label^  label2;
+
 
 
 		/// <summary>
@@ -79,6 +86,7 @@ namespace Edytor2D {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(DrawForm::typeid));
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -90,6 +98,17 @@ namespace Edytor2D {
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
+			// 
+			// label1
+			// 
+			this->label1->BackColor = System::Drawing::Color::Black;
+			this->label1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->label1->Location = System::Drawing::Point(120, 13);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(30, 23);
+			this->label1->TabIndex = 2;
+			this->label1->Text = L" ";
+			this->label1->Click += gcnew System::EventHandler(this, &DrawForm::label1_Click);
 			// 
 			// panel2
 			// 
@@ -179,6 +198,7 @@ namespace Edytor2D {
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->panel2);
+			this->Controls->Add(this->label1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"DrawForm";
 			this->Text = L"Drawing";
@@ -194,12 +214,14 @@ namespace Edytor2D {
 	}
 
 	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (isPen || isBrush) {
+		if (isPen || isBrush || isEraser) {
 			if (e->Button == System::Windows::Forms::MouseButtons::Left) {
 				if (isBrush)
 					gfx->DrawLine(pen, point, e->Location);
-				else if(isPen)
+				else if (isPen)
 					gfx->FillEllipse(brush, e->X, e->Y, brushSize, brushSize);
+				else if (isEraser)
+					gfx->DrawLine(eraser, point, e->Location);
 
 				point = e->Location;
 
@@ -213,16 +235,29 @@ namespace Edytor2D {
 		pictureBox1->Refresh();
 	}
 
+	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+		System::Windows::Forms::DialogResult res;
+		res = colorDialog1->ShowDialog();
+
+		if (res == Windows::Forms::DialogResult::OK) {
+				pen->Color = colorDialog1->Color;
+				brush = gcnew SolidBrush(colorDialog1->Color);
+				label1->BackColor = colorDialog1->Color;
+		}
+		
 	
+	}
 		  //brush icon
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		isBrush = true;
 		isPen = false;
+		isEraser = false;
 }
 		 //pen icon
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 		isPen = true;
 		isBrush = false;
+		isEraser = false;
 }	
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		switch (comboBox1->SelectedIndex) {
@@ -261,7 +296,13 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 				break;
 		}
 			pen->Width = brushSize;
+			eraser->Width = brushSize;
 }
-
+	//eraser
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		isPen = false;
+		isBrush = false;
+		isEraser = true;
+	}
 };
 }
