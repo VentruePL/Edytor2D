@@ -66,6 +66,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
 	private: System::Windows::Forms::ToolStripButton^  toolStripButton7;
 	private: System::Windows::Forms::RichTextBox^  richTextBox1;
+	private: System::Windows::Forms::Button^  button1;
 
 
 
@@ -89,6 +90,7 @@ namespace Edytor2D {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(workspace::typeid));
 			this->toolStripContainer1 = (gcnew System::Windows::Forms::ToolStripContainer());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
@@ -137,6 +139,7 @@ namespace Edytor2D {
 			// toolStripContainer1.ContentPanel
 			// 
 			this->toolStripContainer1->ContentPanel->AutoScroll = true;
+			this->toolStripContainer1->ContentPanel->Controls->Add(this->button1);
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->richTextBox1);
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
 			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(918, 501);
@@ -155,6 +158,17 @@ namespace Edytor2D {
 			// toolStripContainer1.TopToolStripPanel
 			// 
 			this->toolStripContainer1->TopToolStripPanel->Controls->Add(this->menuStrip1);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(549, 288);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 3;
+			this->button1->Text = L"close";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Visible = false;
+			this->button1->Click += gcnew System::EventHandler(this, &workspace::button1_Click_1);
 			// 
 			// richTextBox1
 			// 
@@ -530,6 +544,7 @@ private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender,
 }
 	private: System::Void toolStripButton2_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->richTextBox1->Visible = true;
+		this->button1->Visible = true;
 		}
 private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
@@ -538,6 +553,10 @@ private: System::Void richTextBox1_TextChanged(System::Object^  sender, System::
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void richTextBox1_TextChanged_1(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+	this->richTextBox1->Visible = false;
+	this->button1->Visible = false;
 }
 };
 }
