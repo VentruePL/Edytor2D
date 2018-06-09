@@ -1,4 +1,5 @@
 #pragma once
+#include "tekst.h"
 
 namespace Edytor2D {
 
@@ -343,25 +344,25 @@ namespace Edytor2D {
 			// wymyœlToolStripMenuItem
 			// 
 			this->wymyœlToolStripMenuItem->Name = L"wymyœlToolStripMenuItem";
-			this->wymyœlToolStripMenuItem->Size = System::Drawing::Size(116, 22);
+			this->wymyœlToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->wymyœlToolStripMenuItem->Text = L"Wymyœl";
 			// 
 			// seToolStripMenuItem
 			// 
 			this->seToolStripMenuItem->Name = L"seToolStripMenuItem";
-			this->seToolStripMenuItem->Size = System::Drawing::Size(116, 22);
+			this->seToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->seToolStripMenuItem->Text = L"Se";
 			// 
 			// coœToolStripMenuItem
 			// 
 			this->coœToolStripMenuItem->Name = L"coœToolStripMenuItem";
-			this->coœToolStripMenuItem->Size = System::Drawing::Size(116, 22);
+			this->coœToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->coœToolStripMenuItem->Text = L"Coœ";
 			// 
 			// bartekToolStripMenuItem
 			// 
 			this->bartekToolStripMenuItem->Name = L"bartekToolStripMenuItem";
-			this->bartekToolStripMenuItem->Size = System::Drawing::Size(116, 22);
+			this->bartekToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->bartekToolStripMenuItem->Text = L"Bartek";
 			// 
 			// filtryToolStripMenuItem
@@ -545,6 +546,8 @@ private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender,
 	private: System::Void toolStripButton2_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->richTextBox1->Visible = true;
 		this->button1->Visible = true;
+		tekst ^ n = gcnew tekst();
+		n->Show();
 		}
 private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }

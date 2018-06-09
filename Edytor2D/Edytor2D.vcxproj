@@ -133,14 +133,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tekst.cpp" />
     <ClCompile Include="workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tekst.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="workspace.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="tekst.resx">
+      <DependentUpon>tekst.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="workspace.resx">
       <DependentUpon>workspace.h</DependentUpon>
     </EmbeddedResource>
