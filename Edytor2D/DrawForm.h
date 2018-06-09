@@ -28,11 +28,19 @@ namespace Edytor2D {
 			eraser = gcnew Pen(Color::Red);
 			eraser->Width = brushSize;
 
-			
+			actualColor = Color::Black;
 				
 			pictureBox1->Image = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
 			gfx = Graphics::FromImage(pictureBox1->Image);	
 			
+		}
+
+		void setBrushSize(int newSize) {
+			brushSize = newSize;
+		}
+
+		void setBrushSize(Color newColor) {
+			actualColor = newColor;
 		}
 
 		int getBrushSize() {
@@ -71,6 +79,8 @@ namespace Edytor2D {
 		bool isPen = false;
 		bool isEraser = false;
 		int brushSize;
+
+		Color actualColor;
 
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::ColorDialog^  colorDialog1;
