@@ -21,14 +21,15 @@ namespace Edytor2D {
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
-			pictureBox1->Image = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
-			g = Graphics::FromImage(pictureBox1->Image);
-		
 		}
-	
+
+	public:
+
 	private:
 		Graphics ^ g;
-		
+		Pen^ myPen;
+		Pen^ myPen2;
+
 	protected:
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
@@ -74,6 +75,7 @@ namespace Edytor2D {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(764, 396);
 			this->panel1->TabIndex = 0;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Forma::panel1_Paint);
 			// 
 			// pictureBox1
 			// 
@@ -83,6 +85,7 @@ namespace Edytor2D {
 			this->pictureBox1->Size = System::Drawing::Size(761, 393);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Forma::pictureBox1_Paint);
 			// 
 			// Forma
 			// 
@@ -92,6 +95,7 @@ namespace Edytor2D {
 			this->Controls->Add(this->panel1);
 			this->Name = L"Forma";
 			this->Text = L"Forma";
+			this->Load += gcnew System::EventHandler(this, &Forma::Forma_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Forma::Forma_Paint);
 			this->panel1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -99,11 +103,33 @@ namespace Edytor2D {
 
 		}
 #pragma endregion
+
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void Forma_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		
 
 	}
-};
+	private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	}
+
+	private: System::Void Forma_Load(System::Object^  sender, System::EventArgs^  e) {
+
+		pictureBox1 = gcnew PictureBox;
+		pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Forma::pictureBox1_Paint);
+		this->Controls->Add(pictureBox1);
+	}
+	private: System::Void pictureBox1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+		Graphics^ g = e->Graphics;
+		myPen = gcnew Pen(Color::Black, 4);
+		myPen2 = gcnew Pen(Color::Red, 6);
+		g->DrawEllipse(myPen, 50, 100, 200, 200);
+		g->DrawRectangle(myPen2, 300, 60, 250, 250);
+	}
+	private: System::Void pictureBox1_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+	}
+	private: System::Void pictureBox1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+	}
+	};
 }
