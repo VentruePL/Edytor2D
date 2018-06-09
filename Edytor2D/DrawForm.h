@@ -35,6 +35,14 @@ namespace Edytor2D {
 			
 		}
 
+		int getBrushSize() {
+			return brushSize;
+		}
+
+		System::Drawing::Color getColor() {
+			return label1->BackColor;
+		}
+
 	protected:
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
