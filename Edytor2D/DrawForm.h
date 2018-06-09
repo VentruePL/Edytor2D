@@ -70,6 +70,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Button^  button1;
 
 
 
@@ -95,6 +96,7 @@ namespace Edytor2D {
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -187,11 +189,22 @@ namespace Edytor2D {
 			this->label2->TabIndex = 8;
 			this->label2->Text = L"COLOR:";
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(611, 13);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 9;
+			this->button1->Text = L"SAVE";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &DrawForm::button1_Click_1);
+			// 
 			// DrawForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(999, 577);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button4);
@@ -303,6 +316,11 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		isPen = false;
 		isBrush = false;
 		isEraser = true;
+	}
+
+			 //save and send to main window
+	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+
 	}
 };
 }
