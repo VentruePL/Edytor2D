@@ -20,7 +20,7 @@ namespace Edytor2D {
 
 	public:
 
-		DrawForm(void){
+		DrawForm(Image^ img){
 			InitializeComponent();
 
 			brush = gcnew SolidBrush(Color::Black);
@@ -34,7 +34,8 @@ namespace Edytor2D {
 
 			actualColor = Color::Black;
 				
-			pictureBox1->Image = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
+			image = gcnew Bitmap(img);
+			pictureBox1->Image = image;
 			gfx = Graphics::FromImage(pictureBox1->Image);	
 			
 		}
@@ -60,8 +61,6 @@ namespace Edytor2D {
 			return actualColor;
 		}
 		
-
-
 		void setTool(Tool t) {
 			switch (t) {
 				case PEN:
@@ -99,6 +98,8 @@ namespace Edytor2D {
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 
 	private:
+
+		Image ^ image;
 		Graphics ^ gfx;
 		Point point;
 		Pen ^ pen;
@@ -172,7 +173,7 @@ namespace Edytor2D {
 			// pictureBox1
 			// 
 			this->pictureBox1->BackColor = System::Drawing::Color::White;
-			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
+			//this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->Location = System::Drawing::Point(-1, -1);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(940, 528);
@@ -316,7 +317,6 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		setTool(ERASER);
 }
-
 
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		switch (comboBox1->SelectedIndex) {

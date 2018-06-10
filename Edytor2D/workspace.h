@@ -202,6 +202,7 @@ namespace Edytor2D {
 			this->toolStripButton3->Name = L"toolStripButton3";
 			this->toolStripButton3->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton3->Text = L"Stempel";
+
 			// 
 			// toolStripButton5
 			// 
@@ -404,7 +405,7 @@ namespace Edytor2D {
 		os = chars;
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
-	Bitmap^ convert_image_bitmap(Image^ image)
+	 public: Bitmap^ convert_image_bitmap(Image^ image)
 	{
 		Bitmap^ bitmapa;
 		//image = pictureBox1->Image;
@@ -412,7 +413,7 @@ namespace Edytor2D {
 		return bitmapa;
 	}
 
-	Image^ convert_bitmap_image(Bitmap^ bitmapa)
+	public: Image^ convert_bitmap_image(Bitmap^ bitmapa)
 	{
 		return bitmapa;
 	}
@@ -505,7 +506,7 @@ private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::
 }
 private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
 		//	set_icon_kolor();
-			DrawForm ^ f = gcnew DrawForm();
+			DrawForm ^ f = gcnew DrawForm(pictureBox1->Image);
 			f->Show();	
 		
 }
