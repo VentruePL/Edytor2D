@@ -34,7 +34,7 @@ namespace Edytor2D {
 			actualColor = Color::Black;
 
 			image = gcnew Bitmap(img);
-
+			returnedImage = image;
 			pictureBox1->Image = gcnew Bitmap(image);
 			gfx = Graphics::FromImage(pictureBox1->Image);
 			
@@ -365,6 +365,7 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		returnedImage = pictureBox1->Image;
+		this->Close();
 	}
 };
 }
