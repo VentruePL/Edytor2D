@@ -507,9 +507,9 @@ private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::
 private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
 		//	set_icon_kolor();
 			DrawForm ^ f = gcnew DrawForm(pictureBox1->Image);
-			f->Show();	
-		
+			
 }
+
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };

@@ -15,8 +15,7 @@ namespace Edytor2D {
 
 	enum Tool { PEN, BRUSH, ERASER };
 
-	public ref class DrawForm : public System::Windows::Forms::Form
-	{
+	public ref class DrawForm : public System::Windows::Forms::Form{
 
 	public:
 
@@ -33,10 +32,11 @@ namespace Edytor2D {
 			eraser->Width = brushSize;
 
 			actualColor = Color::Black;
-				
+
 			image = gcnew Bitmap(img);
-			pictureBox1->Image = image;
-			gfx = Graphics::FromImage(pictureBox1->Image);	
+
+			pictureBox1->Image = gcnew Bitmap(image);
+			gfx = Graphics::FromImage(pictureBox1->Image);
 			
 		}
 
@@ -59,6 +59,10 @@ namespace Edytor2D {
 
 		System::Drawing::Color getColor() {
 			return actualColor;
+		}
+
+		System::Drawing::Image ^ getImage() {
+			return returnedImage;
 		}
 		
 		void setTool(Tool t) {
@@ -100,6 +104,8 @@ namespace Edytor2D {
 	private:
 
 		Image ^ image;
+		Image ^ returnedImage;
+		Bitmap ^ bitmap;
 		Graphics ^ gfx;
 		Point point;
 		Pen ^ pen;
@@ -173,7 +179,6 @@ namespace Edytor2D {
 			// pictureBox1
 			// 
 			this->pictureBox1->BackColor = System::Drawing::Color::White;
-			//this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->Location = System::Drawing::Point(-1, -1);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(940, 528);
@@ -294,6 +299,8 @@ namespace Edytor2D {
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		gfx->Clear(Color::Transparent);
+		pictureBox1->Image = gcnew Bitmap(image);
+		gfx = Graphics::FromImage(pictureBox1->Image);
 		pictureBox1->Refresh();
 	}
 
@@ -356,9 +363,8 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		}
 }
 
-	 //save and send to main window
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-
+		returnedImage = pictureBox1->Image;
 	}
 };
 }
