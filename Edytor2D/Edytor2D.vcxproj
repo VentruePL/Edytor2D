@@ -133,7 +133,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DrawForm.cpp" />
     <ClCompile Include="farba.cpp" />
+    <ClCompile Include="MyUserControl.cpp" />
     <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Scalling.cpp" />
     <ClCompile Include="szum.cpp" />
@@ -141,9 +143,11 @@
     <ClCompile Include="wyostrz.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawForm.h" />
     <ClInclude Include="farba.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MyUserControl.h" />
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="Scalling.h" />
     <ClInclude Include="szum.h">
@@ -157,9 +161,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DrawForm.resx" />
     <EmbeddedResource Include="farba.resx">
       <DependentUpon>farba.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rotation.resx" />
+    <EmbeddedResource Include="Scalling.resx" />
     <EmbeddedResource Include="szum.resx">
       <DependentUpon>szum.h</DependentUpon>
     </EmbeddedResource>
