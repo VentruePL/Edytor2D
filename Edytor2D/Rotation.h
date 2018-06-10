@@ -53,12 +53,16 @@ namespace Edytor2D {
 	protected:
 
 	private:
+		Bitmap ^ dst;
+
+		int szer, wys;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
+#define PI 3.14156
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -174,8 +178,12 @@ namespace Edytor2D {
 
 		}
 #pragma endregion
+
+
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		
+		Color kol;
+
 		if (test->Width > test->Height)
 		{
 			w = test->Width;
@@ -185,24 +193,72 @@ namespace Edytor2D {
 			w = test->Height;
 		}
 
-		
-		Bitmap^ dst = gcnew Bitmap(w,w);
+		int maxx=0, maxy=0,minx=0,miny=0;
+
+		float angle = System::Convert::ToInt16(textBox1->Text) * PI / 180.0;
+
+		if (radioButton1->Checked == true)
+		{
+			angle = angle * -1;
+		}
+
+		int przek;
+		przek = sqrt((test->Width*test->Width) + (test->Height*test->Height));
+		w = przek;
+		//std::cout << przek;
+
+		dst = gcnew Bitmap(w,w);
 		std::cout << w << std::endl;
 		Graphics^ gfx = Graphics::FromImage(dst);
 		SolidBrush^ blueBrush = gcnew SolidBrush(Color::Black);
 		gfx->FillRectangle(blueBrush, 0, 0, w, w);
 		
 		
-		std::cout << test->Width << " " << test->Height<<std::endl;
-		std::cout << dst->Width << " " << dst->Height<<std::endl;
+		//std::cout << test->Width/2 << " " << test->Height/2<<std::endl;
+		//std::cout << dst->Width << " " << dst->Height<<std::endl;
+		float najh= (test->Height * cos(angle) - test->Height * sin(angle))/angle;
+		float najw= (test->Width * cos(angle) + test->Width * sin(angle))/angle;
+
+		std::cout << (w-(test->Height / 2-najw))/2 << " " << najh;
+		std::cout << std::endl << cos(angle)-sin(angle);
+		for (int r = 1; r < test->Width-1; r++)
+		{
+			for (int c = 1; c < test->Height-1; c++)
+			{
+				
+				float new_px = (c- test->Height/2) * cos(angle) - (r- test->Width/2) * sin(angle);
+				float new_py = (c- test->Height/2) * sin(angle) + (r- test->Width/2) * cos(angle);
+				//new_px += (dst->Height - test->Height)/2;//y
+				//new_py += (dst->Width - test->Width)/2;//x
+				//std::cout << new_px << " " << new_py << std::endl;
+				//std::cout << (test->Height - dst->Height) / 2 << " " << (test->Width - dst->Width) / 2 << std::endl;
+				//kol = Color::FromArgb(System::Convert::ToInt16(red_T[r, c]), System::Convert::ToInt16(green_T[c, r]), System::Convert::ToInt16(blue_T[c, r]));
+				kol = test->GetPixel(r, c);
+				//dst->SetPixel(new_px, new_py, Color::FromArgb(System::Convert::ToInt16(red_T[c, r]), System::Convert::ToInt16(green_T[c, r]), System::Convert::ToInt16(blue_T[c, r])));
+				new_px = ((new_px*2+(dst->Height))/2);
+				new_py = ((new_py*2+(dst->Width))/2);
+				//std::cout << new_px << " " << new_py << std::endl;
+				//dst->SetPixel(new_py, new_px, inter(test->GetPixel(r, c), test->GetPixel(r, c+1), test->GetPixel(r, c-1)));
+				if(new_px>=0&&new_py>=0&&new_px+2<= dst->Width&&new_py+2<=dst->Height)
+				{
+					dst->SetPixel(new_py, new_px,test->GetPixel(r, c));
+					dst->SetPixel(new_py, new_px + 1,test->GetPixel(r, c));
+					dst->SetPixel(new_py + 1, new_px,test->GetPixel(r, c));
+				}
+				
+
+				//std::cout << System::Convert::ToInt16(kol->R) << std::endl;
+				//dst->SetPixel(new_px, new_py, Color::FromArgb(255, 255, 255));
+				//std::cout << red_T[c, r] << " " << green_T[c, r] << " " << blue_T[c, r] << std::endl;
+			}
+		}
+
+		//test->SetPixel(900, 900, Color::Red);
 		
 		test = dst;
 
-		//test->SetPixel(900, 900, Color::Red);
+		//std::cout << test->Width << " " << test->Height << std::endl;
 
-
-
-		std::cout << test->Width << " " << test->Height << std::endl;
 		this->Close();
 	}
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
