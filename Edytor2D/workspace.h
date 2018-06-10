@@ -3,6 +3,8 @@
 #include "szum.h"
 #include "wyostrz.h"
 #include "farba.h"
+#include "Scalling.h"
+#include "Rotation.h"
 
 namespace Edytor2D {
 
@@ -158,7 +160,6 @@ namespace Edytor2D {
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(918, 501);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -288,15 +289,16 @@ namespace Edytor2D {
 			// skalowanieToolStripMenuItem
 			// 
 			this->skalowanieToolStripMenuItem->Name = L"skalowanieToolStripMenuItem";
-			this->skalowanieToolStripMenuItem->Size = System::Drawing::Size(133, 22);
+			this->skalowanieToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->skalowanieToolStripMenuItem->Text = L"Skalowanie";
 			this->skalowanieToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::skalowanieToolStripMenuItem_Click);
 			// 
 			// obrótToolStripMenuItem
 			// 
 			this->obrótToolStripMenuItem->Name = L"obrótToolStripMenuItem";
-			this->obrótToolStripMenuItem->Size = System::Drawing::Size(133, 22);
+			this->obrótToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->obrótToolStripMenuItem->Text = L"Obrót";
+			this->obrótToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::obrótToolStripMenuItem_Click);
 			// 
 			// koloryToolStripMenuItem
 			// 
@@ -345,7 +347,7 @@ namespace Edytor2D {
 			// toolStripMenuItem2
 			// 
 			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
-			this->toolStripMenuItem2->Size = System::Drawing::Size(214, 22);
+			this->toolStripMenuItem2->Size = System::Drawing::Size(234, 22);
 			this->toolStripMenuItem2->Text = L"Korekcja szumu (Mediana)";
 			this->toolStripMenuItem2->Click += gcnew System::EventHandler(this, &workspace::toolStripMenuItem2_Click);
 			// 
@@ -513,6 +515,14 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 	set_icon_kolor();
 }
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Bitmap^ scal_bit = convert_image_bitmap(pictureBox1->Image);
+
+	Scalling^ scal_f = gcnew Scalling(scal_bit);
+	scal_f->ShowDialog();
+	pictureBox1->Width = scal_f->szer;
+	pictureBox1->Height = scal_f->wys;
+
+	pictureBox1->Image = convert_bitmap_image(scal_f->test);
 }
 
 
@@ -537,6 +547,15 @@ private: System::Void toolStripMenuItem4_Click(System::Object^  sender, System::
 	farba^ farba_f = gcnew farba(farba_bit);
 	farba_f->ShowDialog();
 	pictureBox1->Image = convert_bitmap_image(farba_f->test);
+}
+private: System::Void obrótToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Bitmap^ rot_bit = convert_image_bitmap(pictureBox1->Image);
+
+	Rotation^ rot_f = gcnew Rotation(rot_bit);
+	rot_f->ShowDialog();
+	pictureBox1->Width = rot_f->test->Width;
+	pictureBox1->Height = rot_f->test->Height;
+	pictureBox1->Image = convert_bitmap_image(rot_f->test);
 }
 };
 }

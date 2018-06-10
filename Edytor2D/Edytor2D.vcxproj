@@ -134,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="farba.cpp" />
+    <ClCompile Include="Rotation.cpp" />
+    <ClCompile Include="Scalling.cpp" />
     <ClCompile Include="szum.cpp" />
     <ClCompile Include="workspace.cpp" />
     <ClCompile Include="wyostrz.cpp" />
@@ -142,6 +144,8 @@
     <ClInclude Include="farba.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Rotation.h" />
+    <ClInclude Include="Scalling.h" />
     <ClInclude Include="szum.h">
       <FileType>CppForm</FileType>
     </ClInclude>
