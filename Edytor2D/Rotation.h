@@ -206,13 +206,20 @@ namespace Edytor2D {
 		przek = sqrt((test->Width*test->Width) + (test->Height*test->Height));
 		w = przek;
 		//std::cout << przek;
-
+		/*
 		dst = gcnew Bitmap(w,w);
 		std::cout << w << std::endl;
 		Graphics^ gfx = Graphics::FromImage(dst);
 		SolidBrush^ blueBrush = gcnew SolidBrush(Color::Black);
+		gfx->FillRectangle(blueBrush, 0, 0, w, w); */
+
+		dst = gcnew Bitmap(w, w);
+		Graphics^ gfx = Graphics::FromImage(dst);
+		Color alfa;
+		alfa = Color::FromArgb(0, 0, 0, 0);
+		SolidBrush^ blueBrush = gcnew SolidBrush(alfa);
 		gfx->FillRectangle(blueBrush, 0, 0, w, w);
-		
+
 		
 		//std::cout << test->Width/2 << " " << test->Height/2<<std::endl;
 		//std::cout << dst->Width << " " << dst->Height<<std::endl;
