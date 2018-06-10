@@ -562,6 +562,7 @@ private: System::Void obrótToolStripMenuItem_Click(System::Object^  sender, Syst
 private: System::Void toolStripButton5_Click(System::Object^  sender, System::EventArgs^  e) {
 	//Bitmap^ buf;
 	DrawForm ^ draw_f = gcnew DrawForm(pictureBox1->Image);
+	draw_f->setColor(wybrany_kolor);
 	draw_f->ShowDialog();
 	pictureBox1->Image = draw_f->getImage();
 	wybrany_kolor = draw_f->getColor();
