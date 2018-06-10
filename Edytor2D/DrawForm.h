@@ -11,6 +11,10 @@ namespace Edytor2D {
 	/// <summary>
 	/// Podsumowanie informacji o DrawForm
 	/// </summary>
+
+
+	enum Tool { PEN, BRUSH, ERASER };
+
 	public ref class DrawForm : public System::Windows::Forms::Form
 	{
 
@@ -55,8 +59,10 @@ namespace Edytor2D {
 		System::Drawing::Color getColor() {
 			return actualColor;
 		}
+		
 
-		void setTool(int t) {
+
+		void setTool(Tool t) {
 			switch (t) {
 				case PEN:
 					actualTool = PEN;
@@ -105,9 +111,7 @@ namespace Edytor2D {
 
 		Color actualColor;
 		int actualTool = -1;
-
-		enum TOOL {PEN, BRUSH, ERASER};
-
+		
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::ColorDialog^  colorDialog1;
 	private: System::Windows::Forms::Button^  button3;
@@ -271,13 +275,13 @@ namespace Edytor2D {
 	}
 
 	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (isPen || isBrush || isEraser) {
+		if (actualTool > -1) {
 			if (e->Button == System::Windows::Forms::MouseButtons::Left) {
-				if (isBrush)
+				if (actualTool == BRUSH)
 					gfx->DrawLine(pen, point, e->Location);
-				else if (isPen)
+				else if (actualTool == PEN)
 					gfx->FillEllipse(brush, e->X, e->Y, brushSize, brushSize);
-				else if (isEraser)
+				else if (actualTool == ERASER)
 					gfx->DrawLine(eraser, point, e->Location);
 
 				point = e->Location;
