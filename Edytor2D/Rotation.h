@@ -181,7 +181,7 @@ namespace Edytor2D {
 
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		
+
 		Color kol;
 
 		if (test->Width > test->Height)
@@ -193,7 +193,7 @@ namespace Edytor2D {
 			w = test->Height;
 		}
 
-		int maxx=0, maxy=0,minx=0,miny=0;
+		int maxx = 0, maxy = 0, minx = 0, miny = 0;
 
 		float angle = System::Convert::ToInt16(textBox1->Text) * PI / 180.0;
 
@@ -205,13 +205,6 @@ namespace Edytor2D {
 		int przek;
 		przek = sqrt((test->Width*test->Width) + (test->Height*test->Height));
 		w = przek;
-		//std::cout << przek;
-		/*
-		dst = gcnew Bitmap(w,w);
-		std::cout << w << std::endl;
-		Graphics^ gfx = Graphics::FromImage(dst);
-		SolidBrush^ blueBrush = gcnew SolidBrush(Color::Black);
-		gfx->FillRectangle(blueBrush, 0, 0, w, w); */
 
 		dst = gcnew Bitmap(w, w);
 		Graphics^ gfx = Graphics::FromImage(dst);
@@ -220,51 +213,65 @@ namespace Edytor2D {
 		SolidBrush^ blueBrush = gcnew SolidBrush(alfa);
 		gfx->FillRectangle(blueBrush, 0, 0, w, w);
 
-		
-		//std::cout << test->Width/2 << " " << test->Height/2<<std::endl;
-		//std::cout << dst->Width << " " << dst->Height<<std::endl;
-		float najh= (test->Height * cos(angle) - test->Height * sin(angle))/angle;
-		float najw= (test->Width * cos(angle) + test->Width * sin(angle))/angle;
 
-		std::cout << (w-(test->Height / 2-najw))/2 << " " << najh;
-		std::cout << std::endl << cos(angle)-sin(angle);
-		for (int r = 1; r < test->Width-1; r++)
+
+		//float najh= (test->Height * cos(angle) - test->Height * sin(angle))/angle;
+		//float najw= (test->Width * cos(angle) + test->Width * sin(angle))/angle;
+
+		for (int r = 1; r < test->Width - 1; r++)
 		{
-			for (int c = 1; c < test->Height-1; c++)
-			{
-				
-				float new_px = (c- test->Height/2) * cos(angle) - (r- test->Width/2) * sin(angle);
-				float new_py = (c- test->Height/2) * sin(angle) + (r- test->Width/2) * cos(angle);
-				//new_px += (dst->Height - test->Height)/2;//y
-				//new_py += (dst->Width - test->Width)/2;//x
-				//std::cout << new_px << " " << new_py << std::endl;
-				//std::cout << (test->Height - dst->Height) / 2 << " " << (test->Width - dst->Width) / 2 << std::endl;
-				//kol = Color::FromArgb(System::Convert::ToInt16(red_T[r, c]), System::Convert::ToInt16(green_T[c, r]), System::Convert::ToInt16(blue_T[c, r]));
-				kol = test->GetPixel(r, c);
-				//dst->SetPixel(new_px, new_py, Color::FromArgb(System::Convert::ToInt16(red_T[c, r]), System::Convert::ToInt16(green_T[c, r]), System::Convert::ToInt16(blue_T[c, r])));
-				new_px = ((new_px*2+(dst->Height))/2);
-				new_py = ((new_py*2+(dst->Width))/2);
-				//std::cout << new_px << " " << new_py << std::endl;
-				//dst->SetPixel(new_py, new_px, inter(test->GetPixel(r, c), test->GetPixel(r, c+1), test->GetPixel(r, c-1)));
-				if(new_px>=0&&new_py>=0&&new_px+2<= dst->Width&&new_py+2<=dst->Height)
-				{
-					dst->SetPixel(new_py, new_px,test->GetPixel(r, c));
-					dst->SetPixel(new_py, new_px + 1,test->GetPixel(r, c));
-					dst->SetPixel(new_py + 1, new_px,test->GetPixel(r, c));
-				}
-				
 
-				//std::cout << System::Convert::ToInt16(kol->R) << std::endl;
-				//dst->SetPixel(new_px, new_py, Color::FromArgb(255, 255, 255));
-				//std::cout << red_T[c, r] << " " << green_T[c, r] << " " << blue_T[c, r] << std::endl;
+			for (int c = 1; c < test->Height - 1; c++)
+			{
+
+				float new_px = (c - test->Height / 2) * cos(angle) - (r - test->Width / 2) * sin(angle);
+				float new_py = (c - test->Height / 2) * sin(angle) + (r - test->Width / 2) * cos(angle);
+
+				kol = test->GetPixel(r, c);
+
+				new_px = ((new_px * 2 + (dst->Height)) / 2);
+				new_py = ((new_py * 2 + (dst->Width)) / 2);
+
+				if (new_px >= 0 && new_py >= 0 && new_px + 2 <= dst->Width&&new_py + 2 <= dst->Height)
+				{
+					dst->SetPixel(new_py, new_px, test->GetPixel(r, c));
+					dst->SetPixel(new_py, new_px + 1, test->GetPixel(r, c));
+					dst->SetPixel(new_py + 1, new_px, test->GetPixel(r, c));
+				}
+
+			}
+
+		}
+		int lx, ly;
+		lx = dst->Width;
+		ly = dst->Height;
+		//od przodu dodac od tylu tyle samo odjac
+		for (int i = 1; i < dst->Width - 1; i++)
+		{
+
+			for (int j = 1; j < dst->Height - 1; j++)
+			{
+				Color sprawdzacz = dst->GetPixel(i, j);
+				if (sprawdzacz != Color::FromArgb(0, 0, 0, 0))
+				{
+					if (lx > i)
+					{
+						lx = i;
+					}
+					if (ly > j)
+					{
+						ly = j;
+					}
+				}
 			}
 		}
+		//System::Drawing::Rectangle tnij = System::Drawing::Rectangle(ly, lx, test->Height-100, test->Width-100);
+		System::Drawing::Rectangle tnij = System::Drawing::Rectangle(lx, ly, dst->Width - lx * 2 - 1, dst->Height - ly * 2 - 1);
+		std::cout << lx << " " << ly << std::endl;
+		test = dst->Clone(tnij, dst->PixelFormat);
 
-		//test->SetPixel(900, 900, Color::Red);
-		
-		test = dst;
+		//test = dst;
 
-		//std::cout << test->Width << " " << test->Height << std::endl;
 
 		this->Close();
 	}
@@ -274,8 +281,8 @@ namespace Edytor2D {
 	}
 	private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
-	textBox1->Text = System::Convert::ToString(trackBar1->Value);
-}
-};
+	private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
+		textBox1->Text = System::Convert::ToString(trackBar1->Value);
+	}
+	};
 }
