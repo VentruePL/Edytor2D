@@ -37,10 +37,15 @@ namespace Edytor2D {
 
 		void setBrushSize(int newSize) {
 			brushSize = newSize;
+			pen->Width = brushSize;
+			eraser->Width = brushSize;
 		}
 
-		void setBrushSize(Color newColor) {
+		void setColor(Color newColor) {
 			actualColor = newColor;
+			pen->Color = actualColor;
+			brush = gcnew SolidBrush(actualColor);
+			label1->BackColor = actualColor;
 		}
 
 		int getBrushSize() {
@@ -48,7 +53,25 @@ namespace Edytor2D {
 		}
 
 		System::Drawing::Color getColor() {
-			return label1->BackColor;
+			return actualColor;
+		}
+
+		void setTool(int t) {
+			switch (t) {
+				case PEN:
+					actualTool = PEN;
+					break;
+				case BRUSH:
+					actualTool = BRUSH;
+					break;
+				case ERASER:
+					actualTool = ERASER;
+					break;
+			}
+		}
+
+		int getTool() {
+			return actualTool;
 		}
 
 	protected:
@@ -81,6 +104,9 @@ namespace Edytor2D {
 		int brushSize;
 
 		Color actualColor;
+		int actualTool = -1;
+
+		enum TOOL {PEN, BRUSH, ERASER};
 
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::ColorDialog^  colorDialog1;
@@ -271,72 +297,62 @@ namespace Edytor2D {
 		res = colorDialog1->ShowDialog();
 
 		if (res == Windows::Forms::DialogResult::OK) {
-				pen->Color = colorDialog1->Color;
-				brush = gcnew SolidBrush(colorDialog1->Color);
-				label1->BackColor = colorDialog1->Color;
+			setColor(colorDialog1->Color);
 		}
-		
-	
 	}
-		  //brush icon
+		
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-		isBrush = true;
-		isPen = false;
-		isEraser = false;
+		setTool(BRUSH);
 }
-		 //pen icon
+		
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-		isPen = true;
-		isBrush = false;
-		isEraser = false;
+		setTool(PEN);
 }	
+		
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		setTool(ERASER);
+}
+
+
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		switch (comboBox1->SelectedIndex) {
 			case 0:
-				brushSize = 2;
+				setBrushSize(2);
 				break;
 			case 1:
-				brushSize = 4;
+				setBrushSize(4);
 				break;
 			case 2:
-				brushSize = 6;
+				setBrushSize(6);
 				break;
 			case 3:
-				brushSize = 8;
+				setBrushSize(8);
 				break;
 			case 4:
-				brushSize = 10;
+				setBrushSize(10);
 				break;
 			case 5:
-				brushSize = 12;
+				setBrushSize(12);
 				break;
 			case 6:
-				brushSize = 14;
+				setBrushSize(14);
 				break;
 			case 7:
-				brushSize = 16;
+				setBrushSize(16);
 				break;
 			case 8:
-				brushSize = 18;
+				setBrushSize(18);
 				break;
 			case 9:
-				brushSize = 20;
+				setBrushSize(20);
 				break;
 			case 10:
-				brushSize = 22;
+				setBrushSize(22);
 				break;
 		}
-			pen->Width = brushSize;
-			eraser->Width = brushSize;
 }
-	//eraser
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		isPen = false;
-		isBrush = false;
-		isEraser = true;
-	}
 
-			 //save and send to main window
+	 //save and send to main window
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 
 	}
