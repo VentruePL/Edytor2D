@@ -16,7 +16,7 @@ namespace Edytor2D {
 	{
 	public:
 
-		Point p1, p2;
+		Point p1, p2, point;
 
 	private: System::Windows::Forms::ComboBox^  comboBox2;
 	private: System::Windows::Forms::Label^  label2;
@@ -24,6 +24,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Label^  wyborKoloru;
 
 	private: System::Windows::Forms::Button^  cmdKolor;
+	private: System::Windows::Forms::Button^  button1;
 
 
 
@@ -69,7 +70,6 @@ namespace Edytor2D {
 		Pen^ myPen2;
 		Pen^ myPen3;
 		Image ^ image;
-		Point point;
 		int rozmiarNarzedzia;
 		Color kolor;
 		//
@@ -119,6 +119,7 @@ namespace Edytor2D {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->wyborKoloru = (gcnew System::Windows::Forms::Label());
 			this->cmdKolor = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -147,7 +148,7 @@ namespace Edytor2D {
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"linia", L"elipsa", L"prostokat" });
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"zaluzja", L"elipsa", L"prostokat", L"linia" });
 			this->comboBox1->Location = System::Drawing::Point(149, 31);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(121, 21);
@@ -168,7 +169,7 @@ namespace Edytor2D {
 			// comboBox2
 			// 
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5", L"20", L"35" });
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"5", L"20", L"35", L"40", L"50" });
 			this->comboBox2->Location = System::Drawing::Point(12, 31);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(121, 21);
@@ -189,28 +190,39 @@ namespace Edytor2D {
 			// wyborKoloru
 			// 
 			this->wyborKoloru->BackColor = System::Drawing::Color::Black;
-			this->wyborKoloru->Location = System::Drawing::Point(743, 17);
+			this->wyborKoloru->Location = System::Drawing::Point(750, 31);
 			this->wyborKoloru->Name = L"wyborKoloru";
-			this->wyborKoloru->Size = System::Drawing::Size(30, 30);
+			this->wyborKoloru->Size = System::Drawing::Size(23, 23);
 			this->wyborKoloru->TabIndex = 6;
 			// 
 			// cmdKolor
 			// 
-			this->cmdKolor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->cmdKolor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->cmdKolor->Location = System::Drawing::Point(640, 17);
+			this->cmdKolor->Location = System::Drawing::Point(669, 31);
 			this->cmdKolor->Name = L"cmdKolor";
-			this->cmdKolor->Size = System::Drawing::Size(75, 30);
+			this->cmdKolor->Size = System::Drawing::Size(75, 23);
 			this->cmdKolor->TabIndex = 7;
 			this->cmdKolor->Text = L"Kolor";
 			this->cmdKolor->UseVisualStyleBackColor = true;
 			this->cmdKolor->Click += gcnew System::EventHandler(this, &Forma::cmdKolor_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(299, 29);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"Wyczysc";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Forma::button1_Click_1);
 			// 
 			// Forma
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(788, 420);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->cmdKolor);
 			this->Controls->Add(this->wyborKoloru);
 			this->Controls->Add(this->label2);
@@ -278,6 +290,16 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 	{
 		setrozmiarNarzedzia(35);
 	}
+	else 
+		if (comboBox2->SelectedIndex == 3)
+		{
+			setrozmiarNarzedzia(40);
+		}
+		else
+			if (comboBox2->SelectedIndex == 4)
+			{
+				setrozmiarNarzedzia(50);
+			}
 }
 	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 		p2.X = e->X;
@@ -289,13 +311,17 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 			
 			else  if (comboBox1->SelectedIndex == 1)
 				g->DrawEllipse(myPen3, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
+
 			else if (comboBox1->SelectedIndex == 2)
 				g->DrawRectangle(myPen2, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
-			//g->DrawLine(myPen, p1.X, p1.Y, e->Location);
+
+			else if (comboBox1->SelectedIndex == 3)
+				g->DrawLine(myPen, point, e->Location);
+
+		//g->DrawLine(myPen, p1.X, p1.Y, e->Location);
 		//	g->DrawLine(myPen, p1.X, p1.Y, p2.X, p2.Y);
 		//	g->DrawLine(myPen, point, e->Location);
 			point = e->Location;
-
 			pictureBox1->Refresh();
 
 			Line^ pline = gcnew Line();
@@ -315,14 +341,25 @@ private: System::Void onDown(System::Object^  sender, System::Windows::Forms::Mo
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void cmdKolor_Click(System::Object^  sender, System::EventArgs^  e) {
+
 	ColorDialog^ oknoKolory = gcnew ColorDialog;
 	oknoKolory->AllowFullOpen = false;
+
 	oknoKolory->ShowHelp = true;
 	oknoKolory->Color = wyborKoloru->BackColor;
+
 	if (oknoKolory->ShowDialog() == ::System::Windows::Forms::DialogResult::OK)
 	{
 		wyborKoloru->BackColor = oknoKolory->Color;
 	}
+}
+private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+
+	g->Clear(Color::Transparent);
+	pictureBox1->Image = gcnew Bitmap(image);
+
+	g = Graphics::FromImage(pictureBox1->Image);
+	pictureBox1->Refresh();
 }
 };
 }
