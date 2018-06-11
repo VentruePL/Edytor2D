@@ -15,16 +15,20 @@ namespace Edytor2D {
 	public ref class tekst : public System::Windows::Forms::Form
 	{
 	public:
-		int  textsize=0;
 
 	public:
 		tekst(void)
 		{
-			InitializeComponent();
-			
-			
-			
+			InitializeComponent();	
+			textSize = 10;
 		}
+
+		/*void setTextSize(int newSize) {
+			textSize = newSize;
+
+
+		}*/
+
 
 	protected:
 		/// <summary>
@@ -47,6 +51,9 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Label^  label1;
 
 	private:
+
+		int textSize;
+
 		/// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
@@ -80,8 +87,8 @@ namespace Edytor2D {
 			// 
 			// richTextBox1
 			// 
-			//this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				//static_cast<System::Byte>(238)));
+			/*this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));*/
 			this->richTextBox1->Location = System::Drawing::Point(12, 12);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(515, 230);
@@ -168,51 +175,51 @@ namespace Edytor2D {
 	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		switch (comboBox1->SelectedIndex) {
 		case 0:
-			textsize=2;
+			textSize = 2;
 			break;
 		case 1:
-			textsize = 4;
+			textSize = 4;
 			break;
 		case 2:
-			textsize = 6;
+			textSize = 6;
 			break;
 		case 3:
-			textsize = 8;
+			textSize = 8;
 			break;
 		case 4:
-			textsize = 10;
+			textSize = 10;
 			break;
 		case 5:
-			textsize = 12;
+			textSize = 12;
 			break;
 		case 6:
-			textsize = 14;
+			textSize = 14;
 			break;
 		case 7:
-			textsize = 16;
+			textSize = 16;
 			break;
 		case 8:
-			textsize = 18;
+			textSize = 18;
 			break;
 		case 9:
-			textsize = 20;
+			textSize = 20;
 			break;
 		case 10:
-			textsize = 22;
+			textSize = 22;
 			break;
 
 		}
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(238)));
 	}
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
 }
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
 }
 private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
