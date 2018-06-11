@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Stempel.h"
+
 namespace Edytor2D {
 
 	using namespace System;
@@ -200,6 +202,7 @@ namespace Edytor2D {
 			this->toolStripButton3->Name = L"toolStripButton3";
 			this->toolStripButton3->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton3->Text = L"Stempel";
+			this->toolStripButton3->Click += gcnew System::EventHandler(this, &workspace::toolStripButton3_Click);
 			// 
 			// toolStripButton5
 			// 
@@ -394,41 +397,41 @@ namespace Edytor2D {
 
 		}
 #pragma endregion
-	void MarshalString(String ^ s, std::string& os)
-	{
-		using namespace Runtime::InteropServices;
-		const char* chars =
-			(const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
-		os = chars;
-		Marshal::FreeHGlobal(IntPtr((void*)chars));
-	}
-	Bitmap^ convert_image_bitmap(Image^ image)
-	{
-		Bitmap^ bitmapa;
-		//image = pictureBox1->Image;
-		bitmapa = gcnew Bitmap(image);
-		return bitmapa;
-	}
-
-	Image^ convert_bitmap_image(Bitmap^ bitmapa)
-	{
-		return bitmapa;
-	}
-
-	Color wybrany_kolor = Color::FromArgb(0, 0, 0);
-	
-	void set_icon_kolor()
-	{
-		Bitmap^ tmp = convert_image_bitmap(toolStripButton6->Image);
-		for (int i = 0; i < tmp->Width; i++)
+		void MarshalString(String ^ s, std::string& os)
 		{
-			for (int j = 0; j < tmp->Height; j++)
-			{
-				tmp->SetPixel(i, j, wybrany_kolor);
-			}
+			using namespace Runtime::InteropServices;
+			const char* chars =
+				(const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
+			os = chars;
+			Marshal::FreeHGlobal(IntPtr((void*)chars));
 		}
-		toolStripButton6->Image = convert_bitmap_image(tmp);
-	}
+		Bitmap^ convert_image_bitmap(Image^ image)
+		{
+			Bitmap^ bitmapa;
+			//image = pictureBox1->Image;
+			bitmapa = gcnew Bitmap(image);
+			return bitmapa;
+		}
+
+		Image^ convert_bitmap_image(Bitmap^ bitmapa)
+		{
+			return bitmapa;
+		}
+
+		Color wybrany_kolor = Color::FromArgb(0, 0, 0);
+
+		void set_icon_kolor()
+		{
+			Bitmap^ tmp = convert_image_bitmap(toolStripButton6->Image);
+			for (int i = 0; i < tmp->Width; i++)
+			{
+				for (int j = 0; j < tmp->Height; j++)
+				{
+					tmp->SetPixel(i, j, wybrany_kolor);
+				}
+			}
+			toolStripButton6->Image = convert_bitmap_image(tmp);
+		}
 
 	private: System::Void workspace_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
@@ -449,62 +452,75 @@ namespace Edytor2D {
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 
-private: System::Void toolStripButton1_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-
-private: System::Void splitContainer1_Panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-}
-
-
-private: System::Void toolStripContainer1_LeftToolStripPanel_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-
-private: System::Void toolStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
-}
-private: System::Void takToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	//this.button1.Click += new System.EventHandler(this.button1_Click);
-	
-	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-	{
-		pictureBox1->Image=Image::FromFile(openFileDialog1->FileName,true);
-		pictureBox1->Width = pictureBox1->Image->Width;//szer
-		pictureBox1->Height = pictureBox1->Image->Height;//wys
-		//pictureBox1->Image=FromFile(openFileDialog1->FileName,1);
-		//Image^ tmp = Image::FromFile(openFileDialog1->FileName, true);
-		//pictureBox1->Image = tmp;
-		//String^ no=openFileDialog1->FileName;
-		//std::string a;
-		//MarshalString(no, a);
-		//std::cout << a << std::endl;
+	private: System::Void toolStripButton1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 
-}
+	private: System::Void splitContainer1_Panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	}
 
-private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	
-	if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-	{
-		switch (saveFileDialog1->FilterIndex)
+
+	private: System::Void toolStripContainer1_LeftToolStripPanel_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+
+	private: System::Void toolStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
+	}
+	private: System::Void takToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		//this.button1.Click += new System.EventHandler(this.button1_Click);
+
+		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 		{
-		case 1:
-			pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Jpeg);
-			break;
-		case 2:
-			pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Bmp);
-			break;
-		case 3:
-			pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Png);
-			break;
+			pictureBox1->Image = Image::FromFile(openFileDialog1->FileName, true);
+			pictureBox1->Width = pictureBox1->Image->Width;//szer
+			pictureBox1->Height = pictureBox1->Image->Height;//wys
+															 //pictureBox1->Image=FromFile(openFileDialog1->FileName,1);
+															 //Image^ tmp = Image::FromFile(openFileDialog1->FileName, true);
+															 //pictureBox1->Image = tmp;
+															 //String^ no=openFileDialog1->FileName;
+															 //std::string a;
+															 //MarshalString(no, a);
+															 //std::cout << a << std::endl;
+		}
+
+	}
+
+	private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+		{
+			switch (saveFileDialog1->FilterIndex)
+			{
+			case 1:
+				pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Jpeg);
+				break;
+			case 2:
+				pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Bmp);
+				break;
+			case 3:
+				pictureBox1->Image->Save(saveFileDialog1->FileName, System::Drawing::Imaging::ImageFormat::Png);
+				break;
+			}
 		}
 	}
-}
-private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-	//pictureBox1->Image = convert_image_bitmap();
-}
-private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
-	set_icon_kolor();
-}
-private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-};
+	private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		//pictureBox1->Image = convert_image_bitmap();
+	}
+	private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
+		set_icon_kolor();
+	}
+
+	private: System::Void toolStripButton3_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		Stempel ^ stempel_s = gcnew Stempel(pictureBox1->Image);
+		stempel_s->ShowDialog();
+		pictureBox1->Image = stempel_s->getImage();
+		set_icon_kolor();
+	}
+
+
+	private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+
+
+
+	};
 }
