@@ -402,7 +402,7 @@ namespace Edytor2D {
 		os = chars;
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
-	Bitmap^ convert_image_bitmap(Image^ image)
+	public : Bitmap^ convert_image_bitmap(Image^ image)
 	{
 		Bitmap^ bitmapa;
 		//image = pictureBox1->Image;
@@ -410,7 +410,7 @@ namespace Edytor2D {
 		return bitmapa;
 	}
 
-	Image^ convert_bitmap_image(Bitmap^ bitmapa)
+	public : Image^ convert_bitmap_image(Bitmap^ bitmapa)
 	{
 		return bitmapa;
 	}
@@ -500,7 +500,7 @@ private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, Sys
 	}
 }
 private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-	Forma ^ forma = gcnew Forma();
+	Forma ^ forma = gcnew Forma(pictureBox1->Image);
 	forma->Show();
 	//pictureBox1->Image = convert_image_bitmap();
 }
