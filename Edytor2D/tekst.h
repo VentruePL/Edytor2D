@@ -15,12 +15,15 @@ namespace Edytor2D {
 	public ref class tekst : public System::Windows::Forms::Form
 	{
 	public:
+		int  textsize=0;
+
+	public:
 		tekst(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: W tym miejscu dodaj kod konstruktora
-			//
+			
+			
+			
 		}
 
 	protected:
@@ -38,6 +41,10 @@ namespace Edytor2D {
 	protected:
 	private: System::Windows::Forms::RichTextBox^  richTextBox1;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Label^  label1;
 
 	private:
 		/// <summary>
@@ -52,9 +59,14 @@ namespace Edytor2D {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(tekst::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -68,6 +80,8 @@ namespace Edytor2D {
 			// 
 			// richTextBox1
 			// 
+			//this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				//static_cast<System::Byte>(238)));
 			this->richTextBox1->Location = System::Drawing::Point(12, 12);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(515, 230);
@@ -77,27 +91,131 @@ namespace Edytor2D {
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(541, 16);
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
+				L"2", L"4", L"6", L"8", L"10", L"12", L"14", L"16",
+					L"18", L"20", L"22"
+			});
+			this->comboBox1->Location = System::Drawing::Point(541, 83);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(161, 21);
 			this->comboBox1->TabIndex = 3;
 			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &tekst::comboBox1_SelectedIndexChanged);
+			// 
+			// button2
+			// 
+			this->button2->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.Image")));
+			this->button2->Location = System::Drawing::Point(541, 14);
+			this->button2->Name = L"button2";
+			this->button2->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->button2->Size = System::Drawing::Size(38, 40);
+			this->button2->TabIndex = 4;
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &tekst::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button3.Image")));
+			this->button3->Location = System::Drawing::Point(603, 15);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(38, 40);
+			this->button3->TabIndex = 5;
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &tekst::button3_Click);
+			// 
+			// button4
+			// 
+			this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
+			this->button4->Location = System::Drawing::Point(664, 14);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(38, 40);
+			this->button4->TabIndex = 6;
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &tekst::button4_Click);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Malgun Gothic Semilight", 13, System::Drawing::FontStyle::Bold));
+			this->label1->Location = System::Drawing::Point(537, 57);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(164, 25);
+			this->label1->TabIndex = 7;
+			this->label1->Text = L"Rozmiar czcionki:";
+			this->label1->Click += gcnew System::EventHandler(this, &tekst::label1_Click);
 			// 
 			// tekst
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(708, 393);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->button4);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->button1);
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
 			this->Name = L"tekst";
 			this->Text = L"tekst";
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		switch (comboBox1->SelectedIndex) {
+		case 0:
+			textsize=2;
+			break;
+		case 1:
+			textsize = 4;
+			break;
+		case 2:
+			textsize = 6;
+			break;
+		case 3:
+			textsize = 8;
+			break;
+		case 4:
+			textsize = 10;
+			break;
+		case 5:
+			textsize = 12;
+			break;
+		case 6:
+			textsize = 14;
+			break;
+		case 7:
+			textsize = 16;
+			break;
+		case 8:
+			textsize = 18;
+			break;
+		case 9:
+			textsize = 20;
+			break;
+		case 10:
+			textsize = 22;
+			break;
+
+		}
 	}
-	};
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(238)));
+	}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+		static_cast<System::Byte>(238)));
+}
+private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textsize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+		static_cast<System::Byte>(238)));
+}
+private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+};
 }
