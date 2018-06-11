@@ -7,22 +7,22 @@ namespace Edytor2D {
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Drawing;
 	using namespace System::Drawing::Imaging;
+
+
+
+
 
 	/// <summary>
 	/// Podsumowanie informacji o DrawForm
 	/// </summary>
 
-	enum Tool { STEMPEL_COPY, STEMPEL_PASTE };
+	
 
 	public ref class Stempel : public System::Windows::Forms::Form
 	{
 
-	public:
-		Bitmap ^ Clone(
-			Rectangle rect,
-			PixelFormat format
-		);
 
 
 	public:
@@ -38,25 +38,23 @@ namespace Edytor2D {
 			gfx = Graphics::FromImage(pictureBox1->Image);
 
 
+
+
+
 		}
+
+	public:
+		Bitmap ^ Clone1;
+
+		Bitmap ^ dst;
+
+
+
 
 		System::Drawing::Image ^ getImage() {
 			return returnedImage;
 		}
-		void setTool(Tool t) {
-			switch (t) {
-			case STEMPEL_COPY:
-				actualTool = STEMPEL_COPY;
-				break;
-			case STEMPEL_PASTE:
-				actualTool = STEMPEL_PASTE;
-				break;
-			}
-		}
 
-		int getTool() {
-			return actualTool;
-		}
 
 	protected:
 		/// <summary>
@@ -70,8 +68,6 @@ namespace Edytor2D {
 			}
 		}
 	private: System::Windows::Forms::Panel^  panel1;
-	protected:
-
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Panel^  panel2;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
@@ -87,8 +83,8 @@ namespace Edytor2D {
 		Point point;
 		bool isStempel = false;
 		int actualTool = -1;
-	private: System::Windows::Forms::Button^  buttonCopy;
-	private: System::Windows::Forms::Button^  buttonPaste;
+
+
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::ColorDialog^  colorDialog1;
 	private: System::Windows::Forms::Button^  button3;
@@ -96,6 +92,10 @@ namespace Edytor2D {
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Button^  button1;
+
+
+
+
 
 
 
@@ -115,8 +115,6 @@ namespace Edytor2D {
 				 this->panel2 = (gcnew System::Windows::Forms::Panel());
 				 this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 				 this->button2 = (gcnew System::Windows::Forms::Button());
-				 this->buttonCopy = (gcnew System::Windows::Forms::Button());
-				 this->buttonPaste = (gcnew System::Windows::Forms::Button());
 				 this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 				 this->button3 = (gcnew System::Windows::Forms::Button());
 				 this->button4 = (gcnew System::Windows::Forms::Button());
@@ -164,24 +162,6 @@ namespace Edytor2D {
 				 this->button2->UseVisualStyleBackColor = true;
 				 this->button2->Click += gcnew System::EventHandler(this, &Stempel::button2_Click);
 				 // 
-				 // buttonCopy
-				 // 
-				 this->buttonCopy->Location = System::Drawing::Point(150, 15);
-				 this->buttonCopy->Name = L"buttonCopy";
-				 this->buttonCopy->Size = System::Drawing::Size(75, 23);
-				 this->buttonCopy->TabIndex = 4;
-				 this->buttonCopy->Text = L"COPY";
-				 this->buttonCopy->Click += gcnew System::EventHandler(this, &Stempel::buttonCopy_Click);
-				 // 
-				 // buttonPaste
-				 // 
-				 this->buttonPaste->Location = System::Drawing::Point(160, 15);
-				 this->buttonPaste->Name = L"buttonPaste";
-				 this->buttonPaste->Size = System::Drawing::Size(75, 23);
-				 this->buttonPaste->TabIndex = 4;
-				 this->buttonPaste->Text = L"PASTE";
-				 this->buttonPaste->Click += gcnew System::EventHandler(this, &Stempel::buttonPaste_Click);
-				 // 
 				 // button3
 				 // 
 				 this->button3->Location = System::Drawing::Point(0, 0);
@@ -200,7 +180,7 @@ namespace Edytor2D {
 				 // 
 				 this->comboBox1->FormattingEnabled = true;
 				 this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"50x50", L"100x100", L"150x150", L"200x200" });
-				 this->comboBox1->Location = System::Drawing::Point(283, 15);
+				 this->comboBox1->Location = System::Drawing::Point(420, 17);
 				 this->comboBox1->Name = L"comboBox1";
 				 this->comboBox1->Size = System::Drawing::Size(121, 21);
 				 this->comboBox1->TabIndex = 11;
@@ -251,37 +231,21 @@ namespace Edytor2D {
 	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 		if (actualTool > -1) {
 			if (e->Button == System::Windows::Forms::MouseButtons::Left) {
-
-				if (actualTool == STEMPEL_COPY)
-
-					Rectangle cloneRect = Rectangle(e->Location, 100, 100);
-				System::Drawing::Imaging::PixelFormat format = image->PixelFormat;
-				Bitmap^ cloneBitmap = Clone(cloneRect, format);
-
-
-				if (actualTool == STEMPEL_PASTE)
-					gfx->DrawImage(cloneBitmap, e->Location);
-
-				point = e->Location;
-
-
-
-				pictureBox1->Refresh();
-
+				dst = gcnew Bitmap(100, 100);
+				Graphics^ gfx = Graphics::FromImage(dst);
+				System::Drawing::Rectangle cloneRect = System::Drawing::Rectangle(100, 100, 100, 100);
+				Clone1 = dst->Clone(cloneRect, image->PixelFormat);
 			}
+			else if (e->Button == System::Windows::Forms::MouseButtons::Right) {
+
+				gfx->DrawImage(Clone1, e->Location);
+			}
+			point = e->Location;
+			pictureBox1->Refresh();
 		}
 
 	}
-	private: System::Void buttonCopy_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		setTool(STEMPEL_COPY);
-
-	}
-	private: System::Void buttonPaste_Click(System::Object^  sender, System::EventArgs^  e) {
-
-		setTool(STEMPEL_PASTE);
-
-	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		gfx->Clear(Color::Transparent);
 		pictureBox1->Image = gcnew Bitmap(image);
