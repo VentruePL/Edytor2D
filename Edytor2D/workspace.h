@@ -510,7 +510,7 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void koloryToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	Jasnosc ^ Jas = gcnew Jasnosc();
+	Jasnosc ^ Jas = gcnew Jasnosc(pictureBox1->Image);
 	Jas->Show();
 
 }
