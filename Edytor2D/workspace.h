@@ -501,8 +501,9 @@ private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, Sys
 }
 private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 	Forma ^ forma = gcnew Forma(pictureBox1->Image);
-	forma->Show();
-	//pictureBox1->Image = convert_image_bitmap();
+	forma->ShowDialog();
+	pictureBox1->Image = forma->getImage();
+	set_icon_kolor();
 }
 private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
 	set_icon_kolor();

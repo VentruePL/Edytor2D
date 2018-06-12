@@ -25,6 +25,7 @@ namespace Edytor2D {
 
 	private: System::Windows::Forms::Button^  cmdKolor;
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
 
 
 
@@ -48,6 +49,7 @@ namespace Edytor2D {
 			list = gcnew ArrayList();
 			point = Point(0, 0);
 			image = gcnew Bitmap(obraz);
+			returnedImage = image;
 			pictureBox1->Image = image;
 			g = Graphics::FromImage(pictureBox1->Image);
 		
@@ -59,6 +61,11 @@ namespace Edytor2D {
 		int getrozmiarNarzedzia() {
 			return rozmiarNarzedzia;
 		}
+
+		System::Drawing::Image ^ getImage() {
+			return returnedImage;
+		}
+
 		
 	public:
 
@@ -70,6 +77,7 @@ namespace Edytor2D {
 		Pen^ myPen2;
 		Pen^ myPen3;
 		Image ^ image;
+		Image ^ returnedImage;	
 		int rozmiarNarzedzia;
 		Color kolor;
 		//
@@ -120,6 +128,7 @@ namespace Edytor2D {
 			this->wyborKoloru = (gcnew System::Windows::Forms::Label());
 			this->cmdKolor = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -190,7 +199,7 @@ namespace Edytor2D {
 			// wyborKoloru
 			// 
 			this->wyborKoloru->BackColor = System::Drawing::Color::Black;
-			this->wyborKoloru->Location = System::Drawing::Point(750, 31);
+			this->wyborKoloru->Location = System::Drawing::Point(750, 26);
 			this->wyborKoloru->Name = L"wyborKoloru";
 			this->wyborKoloru->Size = System::Drawing::Size(23, 23);
 			this->wyborKoloru->TabIndex = 6;
@@ -199,7 +208,7 @@ namespace Edytor2D {
 			// 
 			this->cmdKolor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->cmdKolor->Location = System::Drawing::Point(669, 31);
+			this->cmdKolor->Location = System::Drawing::Point(669, 26);
 			this->cmdKolor->Name = L"cmdKolor";
 			this->cmdKolor->Size = System::Drawing::Size(75, 23);
 			this->cmdKolor->TabIndex = 7;
@@ -209,7 +218,7 @@ namespace Edytor2D {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(299, 29);
+			this->button1->Location = System::Drawing::Point(588, 26);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 8;
@@ -217,11 +226,22 @@ namespace Edytor2D {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Forma::button1_Click_1);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(507, 26);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 9;
+			this->button2->Text = L"Zapisz";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Forma::button2_Click);
+			// 
 			// Forma
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(788, 420);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->cmdKolor);
 			this->Controls->Add(this->wyborKoloru);
@@ -305,6 +325,7 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 		p2.X = e->X;
 		p2.Y = e->Y;
 		if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+			Bitmap^ bit = gcnew Bitmap(image);
 
 			if (comboBox1->SelectedIndex == 0)
 				g->DrawLine(myPen, p1.X, p1.Y, p2.X, p2.Y);
@@ -355,11 +376,13 @@ private: System::Void cmdKolor_Click(System::Object^  sender, System::EventArgs^
 }
 private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 
-	g->Clear(Color::Transparent);
 	pictureBox1->Image = gcnew Bitmap(image);
-
 	g = Graphics::FromImage(pictureBox1->Image);
 	pictureBox1->Refresh();
+
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	returnedImage = pictureBox1->Image;
 }
 };
 }
