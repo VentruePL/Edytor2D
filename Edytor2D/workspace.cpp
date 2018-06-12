@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string>
 #include "workspace.h"
+#include "Jasnosc1.h"
 using namespace System;
 using namespace System::Windows::Forms;
 [STAThread]

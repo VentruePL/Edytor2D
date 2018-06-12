@@ -1,4 +1,6 @@
 #pragma once
+#include "Jasnosc1.h"
+
 
 namespace Edytor2D {
 
@@ -89,6 +91,7 @@ namespace Edytor2D {
 			this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton3 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton5 = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripButton7 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton4 = (gcnew System::Windows::Forms::ToolStripSeparator());
 			this->toolStripButton6 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
@@ -110,7 +113,6 @@ namespace Edytor2D {
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->toolStripButton7 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripContainer1->ContentPanel->SuspendLayout();
 			this->toolStripContainer1->LeftToolStripPanel->SuspendLayout();
 			this->toolStripContainer1->TopToolStripPanel->SuspendLayout();
@@ -131,7 +133,7 @@ namespace Edytor2D {
 			// 
 			this->toolStripContainer1->ContentPanel->AutoScroll = true;
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
-			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(910, 501);
+			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(918, 501);
 			// 
 			// toolStripContainer1.LeftToolStripPanel
 			// 
@@ -168,7 +170,7 @@ namespace Edytor2D {
 			});
 			this->toolStrip1->Location = System::Drawing::Point(0, 3);
 			this->toolStrip1->Name = L"toolStrip1";
-			this->toolStrip1->Size = System::Drawing::Size(32, 165);
+			this->toolStrip1->Size = System::Drawing::Size(24, 146);
 			this->toolStrip1->TabIndex = 0;
 			this->toolStrip1->Text = L"Raz";
 			this->toolStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &workspace::toolStrip1_ItemClicked);
@@ -179,7 +181,7 @@ namespace Edytor2D {
 			this->toolStripButton1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton1.Image")));
 			this->toolStripButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton1->Name = L"toolStripButton1";
-			this->toolStripButton1->Size = System::Drawing::Size(30, 20);
+			this->toolStripButton1->Size = System::Drawing::Size(22, 20);
 			this->toolStripButton1->Text = L"Kszta³ty";
 			this->toolStripButton1->Click += gcnew System::EventHandler(this, &workspace::toolStripButton1_Click_1);
 			// 
@@ -189,7 +191,7 @@ namespace Edytor2D {
 			this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
 			this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton2->Name = L"toolStripButton2";
-			this->toolStripButton2->Size = System::Drawing::Size(30, 20);
+			this->toolStripButton2->Size = System::Drawing::Size(22, 20);
 			this->toolStripButton2->Text = L"Wprowadzanie tekstu";
 			// 
 			// toolStripButton3
@@ -198,7 +200,7 @@ namespace Edytor2D {
 			this->toolStripButton3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton3.Image")));
 			this->toolStripButton3->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton3->Name = L"toolStripButton3";
-			this->toolStripButton3->Size = System::Drawing::Size(30, 20);
+			this->toolStripButton3->Size = System::Drawing::Size(22, 20);
 			this->toolStripButton3->Text = L"Stempel";
 			// 
 			// toolStripButton5
@@ -207,8 +209,17 @@ namespace Edytor2D {
 			this->toolStripButton5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton5.Image")));
 			this->toolStripButton5->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripButton5->Name = L"toolStripButton5";
-			this->toolStripButton5->Size = System::Drawing::Size(30, 20);
+			this->toolStripButton5->Size = System::Drawing::Size(22, 20);
 			this->toolStripButton5->Text = L"Pêdzel";
+			// 
+			// toolStripButton7
+			// 
+			this->toolStripButton7->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripButton7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton7.Image")));
+			this->toolStripButton7->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->toolStripButton7->Name = L"toolStripButton7";
+			this->toolStripButton7->Size = System::Drawing::Size(22, 20);
+			this->toolStripButton7->Text = L"Ustawienia pêdzla";
 			// 
 			// toolStripButton4
 			// 
@@ -251,14 +262,14 @@ namespace Edytor2D {
 			// takToolStripMenuItem
 			// 
 			this->takToolStripMenuItem->Name = L"takToolStripMenuItem";
-			this->takToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->takToolStripMenuItem->Size = System::Drawing::Size(112, 22);
 			this->takToolStripMenuItem->Text = L"Otwórz";
 			this->takToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::takToolStripMenuItem_Click);
 			// 
 			// zapiszToolStripMenuItem
 			// 
 			this->zapiszToolStripMenuItem->Name = L"zapiszToolStripMenuItem";
-			this->zapiszToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->zapiszToolStripMenuItem->Size = System::Drawing::Size(112, 22);
 			this->zapiszToolStripMenuItem->Text = L"Zapisz";
 			this->zapiszToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::zapiszToolStripMenuItem_Click);
 			// 
@@ -275,14 +286,14 @@ namespace Edytor2D {
 			// skalowanieToolStripMenuItem
 			// 
 			this->skalowanieToolStripMenuItem->Name = L"skalowanieToolStripMenuItem";
-			this->skalowanieToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->skalowanieToolStripMenuItem->Size = System::Drawing::Size(133, 22);
 			this->skalowanieToolStripMenuItem->Text = L"Skalowanie";
 			this->skalowanieToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::skalowanieToolStripMenuItem_Click);
 			// 
 			// obrótToolStripMenuItem
 			// 
 			this->obrótToolStripMenuItem->Name = L"obrótToolStripMenuItem";
-			this->obrótToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->obrótToolStripMenuItem->Size = System::Drawing::Size(133, 22);
 			this->obrótToolStripMenuItem->Text = L"Obrót";
 			// 
 			// koloryToolStripMenuItem
@@ -294,6 +305,7 @@ namespace Edytor2D {
 			this->koloryToolStripMenuItem->Name = L"koloryToolStripMenuItem";
 			this->koloryToolStripMenuItem->Size = System::Drawing::Size(110, 20);
 			this->koloryToolStripMenuItem->Text = L"Korekcja kolorów";
+			this->koloryToolStripMenuItem->Click += gcnew System::EventHandler(this, &workspace::koloryToolStripMenuItem_Click);
 			// 
 			// wymyœlToolStripMenuItem
 			// 
@@ -359,15 +371,6 @@ namespace Edytor2D {
 			// saveFileDialog1
 			// 
 			this->saveFileDialog1->Filter = L"Obrazy JPG|*.jpg|Obrazy BMP|*.bmp|Obrazy PNG|*.png";
-			// 
-			// toolStripButton7
-			// 
-			this->toolStripButton7->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton7.Image")));
-			this->toolStripButton7->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton7->Name = L"toolStripButton7";
-			this->toolStripButton7->Size = System::Drawing::Size(30, 20);
-			this->toolStripButton7->Text = L"Ustawienia pêdzla";
 			// 
 			// workspace
 			// 
@@ -505,6 +508,11 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 	set_icon_kolor();
 }
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void koloryToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Jasnosc ^ Jas = gcnew Jasnosc();
+	Jas->Show();
+
 }
 };
 }

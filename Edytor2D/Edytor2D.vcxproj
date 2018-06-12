@@ -133,14 +133,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Jasnosc1.cpp" />
     <ClCompile Include="workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Jasnosc1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="workspace.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Jasnosc1.resx">
+      <DependentUpon>Jasnosc1.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="workspace.resx">
       <DependentUpon>workspace.h</DependentUpon>
     </EmbeddedResource>
