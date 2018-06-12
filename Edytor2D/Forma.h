@@ -29,6 +29,8 @@ namespace Edytor2D {
 
 
 
+
+
 	public:
 	private: System::Windows::Forms::Label^  label1;
 	public:
@@ -42,10 +44,11 @@ namespace Edytor2D {
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
-			myPen = gcnew Pen(Color::Blue, 4);
-			myPen2 = gcnew Pen(Color::Red, 6);
-			myPen3 = gcnew Pen(Color::Green);
-			myPen3->Width = rozmiarNarzedzia;
+		//	myPen = gcnew Pen(Color::Blue, 4);
+		//	myPen2 = gcnew Pen(Color::Red, 6);
+		//	myPen3 = gcnew Pen(Color::Green);
+			pisak = gcnew Pen(Color::Black);
+			pisak->Width = rozmiarNarzedzia;
 			list = gcnew ArrayList();
 			point = Point(0, 0);
 			image = gcnew Bitmap(obraz);
@@ -56,10 +59,16 @@ namespace Edytor2D {
 		}
 		void setrozmiarNarzedzia(int newSize) {
 			rozmiarNarzedzia = newSize;
-			myPen3->Width = rozmiarNarzedzia;
+			pisak->Width = rozmiarNarzedzia;
 		}
 		int getrozmiarNarzedzia() {
 			return rozmiarNarzedzia;
+		}
+
+		void setColor(Color newColor) {
+			kolor = newColor;
+			pisak->Color = kolor;
+			wyborKoloru->BackColor = kolor;
 		}
 
 		System::Drawing::Image ^ getImage() {
@@ -70,10 +79,10 @@ namespace Edytor2D {
 	public:
 
 	private:
-
 		ArrayList ^ list;
 		Graphics ^ g;
 		Pen^ myPen;
+		Pen ^ pisak;
 		Pen^ myPen2;
 		Pen^ myPen3;
 		Image ^ image;
@@ -325,19 +334,20 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 		p2.X = e->X;
 		p2.Y = e->Y;
 		if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+
 			Bitmap^ bit = gcnew Bitmap(image);
 
 			if (comboBox1->SelectedIndex == 0)
-				g->DrawLine(myPen, p1.X, p1.Y, p2.X, p2.Y);
+				g->DrawLine(pisak, p1.X, p1.Y, p2.X, p2.Y);
 			
 			else  if (comboBox1->SelectedIndex == 1)
-				g->DrawEllipse(myPen3, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
+				g->DrawEllipse(pisak, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
 
 			else if (comboBox1->SelectedIndex == 2)
-				g->DrawRectangle(myPen2, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
+				g->DrawRectangle(pisak, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
 
 			else if (comboBox1->SelectedIndex == 3)
-				g->DrawLine(myPen, point, e->Location);
+				g->DrawLine(pisak, point, e->Location);
 
 		//g->DrawLine(myPen, p1.X, p1.Y, e->Location);
 		//	g->DrawLine(myPen, p1.X, p1.Y, p2.X, p2.Y);
@@ -361,19 +371,16 @@ private: System::Void onDown(System::Object^  sender, System::Windows::Forms::Mo
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
-private: System::Void cmdKolor_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void cmdKolor_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	ColorDialog^ oknoKolory = gcnew ColorDialog;
-	oknoKolory->AllowFullOpen = false;
-
-	oknoKolory->ShowHelp = true;
-	oknoKolory->Color = wyborKoloru->BackColor;
-
-	if (oknoKolory->ShowDialog() == ::System::Windows::Forms::DialogResult::OK)
-	{
-		wyborKoloru->BackColor = oknoKolory->Color;
+		ColorDialog^ oknoKolory = gcnew ColorDialog;
+		oknoKolory->AllowFullOpen = false;
+		oknoKolory->ShowHelp = true;
+		oknoKolory->Color = wyborKoloru->BackColor;
+		if (oknoKolory->ShowDialog() == ::System::Windows::Forms::DialogResult::OK) {
+			setColor(oknoKolory->Color);
+		}
 	}
-}
 private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 
 	pictureBox1->Image = gcnew Bitmap(image);
