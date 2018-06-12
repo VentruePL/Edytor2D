@@ -18,15 +18,20 @@ namespace Edytor2D {
 		Jasnosc(Image^ Img)
 		{
 			InitializeComponent();
-			//image = gcnew Bitmap(Img);
+	//		image = gcnew Bitmap(Img);
 		pictureBox1->Image = gcnew Bitmap(Img);
-			//label1->Text = String::Format("{0:0.00}", value);
+		pictureBox2->Image = gcnew Bitmap(Img);
+		//	label1->Text = String::Format("{0:0.00}", value);
 
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
 		}
 
+		System::Drawing::Image^getImage() {
+			return returnedImage;
+		
+	}
 	protected:
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
@@ -50,6 +55,7 @@ namespace Edytor2D {
 		double maxbeta;
 		double brightnessLevel;
 		double beta;
+		Image ^ returnedImage;
 		
 
 
@@ -57,7 +63,14 @@ namespace Edytor2D {
 	private: System::Windows::Forms::TrackBar^  trackBar1;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::TrackBar^  trackBar2;
+
+	private: System::Windows::Forms::PictureBox^  pictureBox2;
+	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+			 
 			 /// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
@@ -70,20 +83,25 @@ namespace Edytor2D {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Jasnosc::typeid));
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->trackBar2 = (gcnew System::Windows::Forms::TrackBar());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// trackBar1
 			// 
 			this->trackBar1->LargeChange = 2;
-			this->trackBar1->Location = System::Drawing::Point(1008, 28);
+			this->trackBar1->Location = System::Drawing::Point(979, 55);
 			this->trackBar1->Maximum = 255;
 			this->trackBar1->Name = L"trackBar1";
 			this->trackBar1->Size = System::Drawing::Size(192, 45);
@@ -96,7 +114,7 @@ namespace Edytor2D {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->label1->Location = System::Drawing::Point(1070, 58);
+			this->label1->Location = System::Drawing::Point(1041, 85);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(70, 25);
 			this->label1->TabIndex = 2;
@@ -104,40 +122,97 @@ namespace Edytor2D {
 			// 
 			// trackBar2
 			// 
-			this->trackBar2->Location = System::Drawing::Point(1024, 218);
+			this->trackBar2->LargeChange = 2;
+			this->trackBar2->Location = System::Drawing::Point(995, 166);
+			this->trackBar2->Maximum = 255;
 			this->trackBar2->Name = L"trackBar2";
 			this->trackBar2->Size = System::Drawing::Size(176, 45);
-			this->trackBar2->TabIndex = 3;
+			this->trackBar2->TabIndex = 4;
+			this->trackBar2->Value = 127;
 			this->trackBar2->Scroll += gcnew System::EventHandler(this, &Jasnosc::trackBar2_Scroll);
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Location = System::Drawing::Point(12, 12);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(918, 501);
+			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox2->TabIndex = 3;
+			this->pictureBox2->TabStop = false;
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->button1->Location = System::Drawing::Point(1024, 464);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(111, 49);
+			this->button1->TabIndex = 5;
+			this->button1->Text = L"ZAPISZ";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Jasnosc::button1_Click_1);
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->pictureBox1->Location = System::Drawing::Point(12, 12);
+			this->pictureBox1->Location = System::Drawing::Point(36, 50);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(940, 528);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox1->TabIndex = 3;
+			this->pictureBox1->Size = System::Drawing::Size(100, 50);
+			this->pictureBox1->TabIndex = 9;
 			this->pictureBox1->TabStop = false;
-			//this->pictureBox1->Click += gcnew System::EventHandler(this, &Jasnosc::pictureBox1_Click);
-
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label2->Location = System::Drawing::Point(1043, 28);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(68, 20);
+			this->label2->TabIndex = 6;
+			this->label2->Text = L"Jasnoœæ";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label3->Location = System::Drawing::Point(1053, 143);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(58, 20);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"Balans";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label4->Location = System::Drawing::Point(1054, 244);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(45, 20);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"RGB";
 			// 
 			// Jasnosc
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1273, 558);
+			this->ClientSize = System::Drawing::Size(1208, 558);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->trackBar2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->trackBar1);
 			this->Name = L"Jasnosc";
-			this->Text = L"Jasnosc";
+			this->Text = L"Korekcja kolorów";
 			this->Load += gcnew System::EventHandler(this, &Jasnosc::Jasnosc_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -146,30 +221,29 @@ namespace Edytor2D {
 #pragma endregion
 	private: System::Void Jasnosc_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
+		
+			 /*
+	private: System::Void OnChange(System::Object^  sender, System::EventArgs^  e) {
+			 value = (float)trackBar1->Value;
+			 label1->Text = String::Format("{0:0.00}", value);
+			 }
+			 */
 	
 	
-	private:  Bitmap ^ ContrastBrightness(Bitmap^ sourceBitmap, double brightnessLevel, double beta)
+	private:  Bitmap ^ Balans(Bitmap^ sourceBitmap, double brightnessLevel, double beta)
 	{
-		// Lock the bitmap's bits.  
+		  
 		System::Drawing::Rectangle rect = System::Drawing::Rectangle(0, 0, sourceBitmap->Width, sourceBitmap->Height);
 		System::Drawing::Imaging::BitmapData^ sourceData = sourceBitmap->LockBits(rect, System::Drawing::Imaging::ImageLockMode::ReadWrite, sourceBitmap->PixelFormat);
 
-		// Get the address of the first line.
-		IntPtr ptr = sourceData->Scan0;
-		// Declare an array to hold the bytes of the bitmap.
-		// This code is specific to a bitmap with 24 bits per pixels.
+		IntPtr ptr = sourceData->Scan0;		
 		int bytes = Math::Abs(sourceData->Stride) * sourceData->Height;
 		array<Byte>^rgbValues = gcnew array<Byte>(bytes);
-
-
 
 		System::Runtime::InteropServices::Marshal::Copy(ptr, rgbValues, 0, bytes);
 
 
-		sourceBitmap->UnlockBits(sourceData); // to use the bitmap, in fact to in order to operate on it
-
-
-											  //double brightnessLevel = Math::Pow((100.0 + threshold) / 100.0, 2);
+		sourceBitmap->UnlockBits(sourceData); 											
 
 		double min[] = { rgbValues[0],rgbValues[1],rgbValues[2],rgbValues[3] };
 		double max[] = { rgbValues[0],rgbValues[1],rgbValues[2],rgbValues[3] };
@@ -181,12 +255,12 @@ namespace Edytor2D {
 		double bt;
 		double tempRGB[4];
 		double contrast[] = { 0,0,0,0 };
-		int tolerance = 5; // +((sourceBitmap->Width + sourceBitmap->Height) - (1600 + 900)) / (sourceBitmap->Width + sourceBitmap->Height);
-		int region = tolerance;  // this metric determines the quality of processing and duration because i have not used any thread
+		int tolerance = 5; 
+		int region = tolerance; 
 		int start = 0;
 
 
-		// all the image rgb calculations
+		// liczenie rgb
 		for (int k = 0; k + 4 < rgbValues->Length; k += 4)
 		{
 			start = 0;
@@ -304,6 +378,23 @@ namespace Edytor2D {
 			//brightnessLevel) + 0.5) * 255.0;
 			alpha = rgbValues[k + 3] + tempRGB[3] * brightnessLevel + (contrast[3] / bt) * beta;
 
+			if (red > 255)
+			{
+				red = 255;
+			}
+			else if (red < 0)
+			{
+				red = 0;
+			}
+
+			if (green > 255)
+			{
+				green = 255;
+			}
+			else if (green < 0)
+			{
+				green = 0;
+			}
 
 			if (blue > 255)
 			{
@@ -315,26 +406,12 @@ namespace Edytor2D {
 			}
 
 
-			if (green > 255)
-			{
-				green = 255;
-			}
-			else if (green < 0)
-			{
-				green = 0;
-			}
+			
 
 
-			if (red > 255)
-			{
-				red = 255;
-			}
-			else if (red < 0)
-			{
-				red = 0;
-			}
+			
 
-			// puts the final rgb values into the byte array
+			// umieszczanie koncowych wartosci rgb w tablicy bajtów
 			rgbValues[k] = System::Convert::ToByte(blue);
 			rgbValues[k + 1] = System::Convert::ToByte(green);
 			rgbValues[k + 2] = System::Convert::ToByte(red);
@@ -353,7 +430,22 @@ namespace Edytor2D {
 
 		return sourceBitmap;
 	}
-	
+	   private: System::Void button1_Click1(System::Object^  sender, System::EventArgs^  e) {
+		if (pictureBox1->Image != nullptr)
+		{
+		}
+
+		OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
+		this->trackBar1->Value = (this->trackBar1->Maximum - this->trackBar1->Minimum) / 2;
+		this->trackBar2->Value = (this->trackBar2->Maximum - this->trackBar2->Minimum) / 2;
+
+		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+		{
+			if ((myStream = openFileDialog1->OpenFile()) != nullptr)
+			{
+			}		}
+	}
+
 	private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
 
 		bmp = gcnew Bitmap(pictureBox1->Image);
@@ -373,26 +465,10 @@ namespace Edytor2D {
 		if (valuealpha - y < 0)
 			z = -z;
 
-		this->brightnessLevel = z * (Math::Abs(valuealpha - y) / (maxalpha / 2));
-
+		this->brightnessLevel = z * (Math::Abs(valuealpha - y) / (maxalpha / 2));		
 		
-		/// Do the operation new_image(i,j) = alpha*image(i,j) + beta
-		/*for (int y = 0; y < bmp->Width; y++)
-		{
-		for (int x = 0; x < bmp->Height; x++)
-		{
-		for (int c = 0; c < 3; c++)
-		{
-
-		//bmp->SetPixel(x,y, alpha*bmp->GetPixel(x,y)->toArgb()+beta);
-		//pictureBox1->Image.at<Vec3b>(y, x)[c] =
-		//saturate_cast<uchar>(alpha*(image.at<Vec3b>(y, x)[c]) + beta);
-		}
-		}
-		}*/
-		//boost::thread workerThread(MyForm->ContrastBrightness);
-		//Image is the one to be displayed
-		this->pictureBox1->Image = ContrastBrightness(bmp, this->brightnessLevel, valuebeta - middlebeta);
+		//obraz jest wyœwietlany
+		this->pictureBox2->Image = Balans(bmp, this->brightnessLevel, valuebeta - middlebeta);
 	}
 
 	private: System::Void trackBar2_Scroll(System::Object^  sender, System::EventArgs^  e) {
@@ -415,27 +491,13 @@ namespace Edytor2D {
 			z = -z;
 
 		this->brightnessLevel = z * (Math::Abs(valuealpha - y) / (maxalpha / 2));
-
-		
-
-		/// Do the operation new_image(i,j) = alpha*image(i,j) + beta
-		/*for (int y = 0; y < bmp->Width; y++)
-		{
-		for (int x = 0; x < bmp->Height; x++)
-		{
-		for (int c = 0; c < 3; c++)
-		{
-		//bmp->SetPixel(x,y, alpha*bmp->GetPixel(x,y)->toArgb()+beta);
-		//pictureBox1->Image.at<Vec3b>(y, x)[c] =
-		//saturate_cast<uchar>(alpha*(image.at<Vec3b>(y, x)[c]) + beta);
-		}
-		}
-		}*/
-		this->pictureBox1->Image = ContrastBrightness(bmp, this->brightnessLevel, valuebeta - middlebeta);
+		this->pictureBox2->Image = Balans(bmp, this->brightnessLevel, valuebeta - middlebeta);
 
 	}
 	
-private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+	returnedImage = pictureBox2->Image;
 }
+		
 };
 }
