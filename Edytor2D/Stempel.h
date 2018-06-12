@@ -18,7 +18,7 @@ namespace Edytor2D {
 	/// Podsumowanie informacji o DrawForm
 	/// </summary>
 
-	
+
 
 	public ref class Stempel : public System::Windows::Forms::Form
 	{
@@ -26,12 +26,16 @@ namespace Edytor2D {
 
 
 	public:
-
+		Point p1, p2;
 		Stempel(Image^ img) {
 			InitializeComponent();
 
-			pen = gcnew Pen(Color::Black);
+
+			stempelSize = 50;
+			pen = gcnew Pen(Color::Black, 2);
 			point = Point(0, 0);
+			pen->Width = 4;
+
 			image = gcnew Bitmap(img);
 			returnedImage = image;
 			pictureBox1->Image = gcnew Bitmap(image);
@@ -41,6 +45,13 @@ namespace Edytor2D {
 
 
 
+		}
+
+		void setstempelSize(int newSize) {
+			stempelSize = newSize;
+		}
+		int getstempelSize() {
+			return stempelSize;
 		}
 
 	public:
@@ -54,6 +65,10 @@ namespace Edytor2D {
 		System::Drawing::Image ^ getImage() {
 			return returnedImage;
 		}
+
+
+		//HCURSOR hCursor = DrawRectangle(p1.Y,p2.Y,stempelSize,stempelSize);
+		//SetCursor(hCursor);
 
 
 	protected:
@@ -78,11 +93,13 @@ namespace Edytor2D {
 		Image ^ returnedImage;
 		Bitmap ^ bitmap;
 		Pen ^ pen;
+		Brush ^ brush;
 		Graphics ^ gfx;
 		Stempel ^ stempel;
 		Point point;
-		bool isStempel = false;
+		bool isStempel = true;
 		int actualTool = -1;
+		int stempelSize;
 
 
 	private: System::Windows::Forms::Button^  button2;
@@ -143,15 +160,16 @@ namespace Edytor2D {
 				 // 
 				 // pictureBox1
 				 // 
-				 this->pictureBox1->BackColor = System::Drawing::Color::White;
-				 this->pictureBox1->Location = System::Drawing::Point(-1, -1);
+				 this->pictureBox1->Location = System::Drawing::Point(0, 0);
 				 this->pictureBox1->Name = L"pictureBox1";
 				 this->pictureBox1->Size = System::Drawing::Size(940, 528);
-				 this->pictureBox1->TabIndex = 4;
+				 this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+				 this->pictureBox1->TabIndex = 0;
 				 this->pictureBox1->TabStop = false;
 				 this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &Stempel::onDown);
 				 this->pictureBox1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Stempel::onMove);
-				 // 
+				 this->pictureBox1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &Stempel::pictureBox1_MouseUp);
+				 // /
 				 // button2
 				 // 
 				 this->button2->Location = System::Drawing::Point(125, 15);
@@ -179,9 +197,10 @@ namespace Edytor2D {
 				 // comboBox1
 				 // 
 				 this->comboBox1->FormattingEnabled = true;
-				 this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"50x50", L"100x100", L"150x150", L"200x200" });
+				 this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"50x50", L"100x100", L"150x150" });
 				 this->comboBox1->Location = System::Drawing::Point(420, 17);
 				 this->comboBox1->Name = L"comboBox1";
+				 this->comboBox1->Text = L"Size";
 				 this->comboBox1->Size = System::Drawing::Size(121, 21);
 				 this->comboBox1->TabIndex = 11;
 				 this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Stempel::comboBox1_SelectedIndexChanged);
@@ -224,25 +243,43 @@ namespace Edytor2D {
 
 			 }
 #pragma endregion
-	private: System::Void onDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		point = e->Location;
+	private: System::Void pictureBox1_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+		// gfx->DrawRectangle(pen, p1.X, p1.Y, 50, 50);
+		// point = e->Location;
+		// pictureBox1->Refresh();
 	}
+	private: System::Void onDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
-	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (actualTool > -1) {
-			if (e->Button == System::Windows::Forms::MouseButtons::Left) {
-				dst = gcnew Bitmap(100, 100);
-				Graphics^ gfx = Graphics::FromImage(dst);
-				System::Drawing::Rectangle cloneRect = System::Drawing::Rectangle(100, 100, 100, 100);
-				Clone1 = dst->Clone(cloneRect, image->PixelFormat);
-			}
-			else if (e->Button == System::Windows::Forms::MouseButtons::Right) {
+		p1.X = e->X;
+		p1.Y = e->Y;
+		point = e->Location;
 
-				gfx->DrawImage(Clone1, e->Location);
-			}
+		if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+
+
+			Bitmap^ bit = gcnew Bitmap(image);
+			//	gfx->DrawRectangle(pen, p1.X, p1.Y, stempelSize, stempelSize);
+			dst = gcnew Bitmap(50, 50);
+			Clone1 = gcnew Bitmap(50, 50);
+			System::Drawing::Rectangle cloneRect = System::Drawing::Rectangle(p1.X, p1.Y, stempelSize, stempelSize);
+			System::Drawing::Imaging::PixelFormat format = bit->PixelFormat;
+			Clone1 = bit->Clone(cloneRect, format);
+
 			point = e->Location;
 			pictureBox1->Refresh();
 		}
+
+		if (e->Button == System::Windows::Forms::MouseButtons::Right) {
+
+			gfx->DrawImage(Clone1, e->Location);
+			point = e->Location;
+			pictureBox1->Refresh();
+		}
+
+	}
+
+	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
 	}
 
@@ -259,11 +296,16 @@ namespace Edytor2D {
 	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		switch (comboBox1->SelectedIndex) {
 		case 0:
-
+			setstempelSize(50);
+			break;
+		case 1:
+			setstempelSize(100);
+			break;
+		case 2:
+			setstempelSize(150);
 			break;
 		}
 	}
-
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		returnedImage = pictureBox1->Image;
 		this->Close();
