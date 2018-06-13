@@ -46,6 +46,7 @@ namespace Edytor2D {
 			//
 			pisak = gcnew Pen(Color::Black);
 			pisak->Width = rozmiarNarzedzia;
+
 			list = gcnew ArrayList();
 			point = Point(0, 0);
 		
@@ -91,8 +92,9 @@ namespace Edytor2D {
 
 		int rozmiarNarzedzia;
 		Color kolor;
-		System::Drawing::Rectangle prostokat = System::Drawing::Rectangle();
 
+		System::Drawing::Rectangle prostokat = System::Drawing::Rectangle();
+		
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 
 	protected:
@@ -111,6 +113,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 
 	protected:
+
 
 	private:
 		/// <summary>
@@ -150,7 +153,7 @@ namespace Edytor2D {
 			this->panel1->Controls->Add(this->pictureBox1);
 			this->panel1->Location = System::Drawing::Point(12, 59);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(764, 349);
+			this->panel1->Size = System::Drawing::Size(764, 458);
 			this->panel1->TabIndex = 0;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Forma::panel1_Paint);
 			// 
@@ -158,8 +161,7 @@ namespace Edytor2D {
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(761, 346);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->Size = System::Drawing::Size(761, 455);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Forma::pictureBox1_Paint);
@@ -252,7 +254,7 @@ namespace Edytor2D {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(788, 420);
+			this->ClientSize = System::Drawing::Size(789, 529);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->cmdKolor);
