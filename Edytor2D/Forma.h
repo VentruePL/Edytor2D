@@ -86,6 +86,7 @@ namespace Edytor2D {
 		Image ^ returnedImage;	
 		int rozmiarNarzedzia;
 		Color kolor;
+		System::Drawing::Rectangle prostokat = System::Drawing::Rectangle();
 
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 
@@ -331,16 +332,45 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 
 			Bitmap^ bit = gcnew Bitmap(image);
 
+
+			if (e->X < prostokat.X)
+			{
+				prostokat.Width = prostokat.X - e->X;
+				prostokat.X = e->X;
+			}
+
+			else
+			{
+				prostokat.Width = e->X - prostokat.X;
+			}
+
+			if (e->Y < prostokat.Y)
+			{
+				prostokat.Height = prostokat.Y - e->Y;
+				prostokat.Y = e->Y;
+			}
+
+			else
+			{
+				prostokat.Height = e->Y - prostokat.Y;
+			}
+
+			this->Invalidate(prostokat);
+
 			if (comboBox1->SelectedIndex == 0)
+
 				g->DrawLine(pisak, p1.X, p1.Y, p2.X, p2.Y);
 			
 			else  if (comboBox1->SelectedIndex == 1)
+
 				g->DrawEllipse(pisak, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
 
 			else if (comboBox1->SelectedIndex == 2)
-				g->DrawRectangle(pisak, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
+
+				g->DrawRectangle(gcnew Pen(Color::Blue, 20), prostokat);
 
 			else if (comboBox1->SelectedIndex == 3)
+
 				g->DrawLine(pisak, point, e->Location);
 
 			point = e->Location;
@@ -355,9 +385,13 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 
 	}
 private: System::Void onDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
 	p1.X = e->X;
 	p1.Y = e->Y;
 	point = e->Location;
+
+	prostokat.X = e->X;
+	prostokat.Y = e->Y;
 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -380,6 +414,7 @@ private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs
 
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+
 	returnedImage = pictureBox1->Image;
 }
 };
