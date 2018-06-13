@@ -52,7 +52,7 @@ namespace Edytor2D {
 		
 			image = gcnew Bitmap(obraz);
 			returnedImage = image;
-			pictureBox1->Image = image;
+			pictureBox1->Image = gcnew Bitmap(image);
 			g = Graphics::FromImage(pictureBox1->Image);
 		
 		}
@@ -419,6 +419,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	}
 private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 
+	g->Clear(Color::White);
 	pictureBox1->Image = gcnew Bitmap(image);
 	g = Graphics::FromImage(pictureBox1->Image);
 	pictureBox1->Refresh();
