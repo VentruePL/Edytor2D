@@ -313,7 +313,6 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	label3->Text = richTextBox1->Text;
-	//this->label3->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Bold));
 }
 };
 }

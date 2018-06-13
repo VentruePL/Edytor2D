@@ -73,6 +73,7 @@ namespace Edytor2D {
 
 
 
+
 	private: System::ComponentModel::IContainer^  components;
 
 	private:
