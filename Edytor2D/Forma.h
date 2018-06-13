@@ -48,16 +48,19 @@ namespace Edytor2D {
 			pisak->Width = rozmiarNarzedzia;
 			list = gcnew ArrayList();
 			point = Point(0, 0);
+		
 			image = gcnew Bitmap(obraz);
 			returnedImage = image;
 			pictureBox1->Image = image;
 			g = Graphics::FromImage(pictureBox1->Image);
 		
 		}
+
 		void setrozmiarNarzedzia(int newSize) {
 			rozmiarNarzedzia = newSize;
 			pisak->Width = rozmiarNarzedzia;
 		}
+
 		int getrozmiarNarzedzia() {
 			return rozmiarNarzedzia;
 		}
@@ -69,6 +72,7 @@ namespace Edytor2D {
 		}
 
 		System::Drawing::Image ^ getImage() {
+
 			return returnedImage;
 		}
 
@@ -76,14 +80,15 @@ namespace Edytor2D {
 	public:
 
 	private:
+
 		ArrayList ^ list;
 		Graphics ^ g;
-		Pen^ myPen;
+
 		Pen ^ pisak;
-		Pen^ myPen2;
-		Pen^ myPen3;
+
 		Image ^ image;
 		Image ^ returnedImage;	
+
 		int rozmiarNarzedzia;
 		Color kolor;
 		System::Drawing::Rectangle prostokat = System::Drawing::Rectangle();
@@ -290,6 +295,7 @@ namespace Edytor2D {
 
 	}
 	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+
 		int selectedIndex = comboBox1->SelectedIndex;
 		Object^ selectedItem = comboBox1->SelectedItem;
 		MessageBox::Show("Wybrano: " + selectedItem->ToString() + "\n" + "Numer: " + selectedIndex.ToString());
@@ -299,6 +305,7 @@ private: System::Void Forma_MouseDown(System::Object^  sender, System::Windows::
 
 }
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+
 	if (comboBox2->SelectedIndex == 0)
 	{
 		setrozmiarNarzedzia(5);
@@ -326,12 +333,11 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 			}
 }
 	private: System::Void onMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
 		p2.X = e->X;
 		p2.Y = e->Y;
+
 		if (e->Button == System::Windows::Forms::MouseButtons::Left) {
-
-			Bitmap^ bit = gcnew Bitmap(image);
-
 
 			if (e->X < prostokat.X)
 			{
@@ -364,15 +370,16 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 			else  if (comboBox1->SelectedIndex == 1)
 
 				g->DrawEllipse(pisak, p1.X, p1.Y, rozmiarNarzedzia, rozmiarNarzedzia);
-
+	
 			else if (comboBox1->SelectedIndex == 2)
 
-				g->DrawRectangle(gcnew Pen(Color::Blue, 20), prostokat);
+				g->DrawRectangle(pisak, prostokat);
 
 			else if (comboBox1->SelectedIndex == 3)
 
 				g->DrawLine(pisak, point, e->Location);
 
+	
 			point = e->Location;
 			pictureBox1->Refresh();
 
@@ -399,9 +406,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	private: System::Void cmdKolor_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		ColorDialog^ oknoKolory = gcnew ColorDialog;
+
 		oknoKolory->AllowFullOpen = false;
 		oknoKolory->ShowHelp = true;
 		oknoKolory->Color = wyborKoloru->BackColor;
+
 		if (oknoKolory->ShowDialog() == ::System::Windows::Forms::DialogResult::OK) {
 			setColor(oknoKolory->Color);
 		}
