@@ -21,7 +21,7 @@ namespace Edytor2D {
 			InitializeComponent();	
 			textSize = 10;
 			textFont = "Time New Roman";
-			
+			text = richTextBox1->Text;
 
 			obraz = gcnew Bitmap(obraz);
 			zwrocObraz = obraz;
@@ -54,6 +54,7 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Label^  label1;
 
 	private:
+		String ^ text;
 		Graphics ^ ob;
 		float textSize;
 		String ^ textFont;
@@ -62,6 +63,7 @@ namespace Edytor2D {
 private: System::Windows::Forms::ComboBox^  comboBox2;
 private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Label^  label3;
 
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -86,6 +88,7 @@ private: System::Windows::Forms::Label^  label2;
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -97,6 +100,7 @@ private: System::Windows::Forms::Label^  label2;
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Dodaj";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &tekst::button1_Click);
 			// 
 			// richTextBox1
 			// 
@@ -193,11 +197,21 @@ private: System::Windows::Forms::Label^  label2;
 			this->pictureBox1->TabIndex = 10;
 			this->pictureBox1->TabStop = false;
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::Transparent;
+			this->label3->Location = System::Drawing::Point(97, 194);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(0, 13);
+			this->label3->TabIndex = 11;
+			// 
 			// tekst
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1065, 595);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->comboBox2);
@@ -259,14 +273,17 @@ private: System::Windows::Forms::Label^  label2;
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->richTextBox1->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(238)));
+		this->label3->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Regular));
 	}
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->richTextBox1->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
+	this->label3->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Bold));
 }
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->richTextBox1->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
+	this->label3->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Italic));
 }
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	switch (comboBox2->SelectedIndex) {
@@ -293,6 +310,10 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 		break;
 
 	}
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	label3->Text = richTextBox1->Text;
+	//this->label3->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Bold));
 }
 };
 }
