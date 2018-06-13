@@ -516,7 +516,7 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 	private: System::Void toolStripButton2_Click(System::Object^  sender, System::EventArgs^  e) {
-		tekst ^ n = gcnew tekst();
+		tekst ^ n = gcnew tekst(pictureBox1->Image);
 		n->Show();
 		}
 private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {

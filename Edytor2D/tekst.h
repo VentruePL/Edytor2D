@@ -15,18 +15,23 @@ namespace Edytor2D {
 	public ref class tekst : public System::Windows::Forms::Form
 	{
 	public:
-
 	public:
-		tekst(void)
+		tekst(Image ^ obraz)
 		{
 			InitializeComponent();	
 			textSize = 10;
 			textFont = "Time New Roman";
-			text = richTextBox1->Text;
+			
+
+			obraz = gcnew Bitmap(obraz);
+			zwrocObraz = obraz;
+			pictureBox1->Image = obraz;
+			ob = Graphics::FromImage(pictureBox1->Image);
 		}
 		
 		
-
+		
+	
 
 	protected:
 		/// <summary>
@@ -49,12 +54,14 @@ namespace Edytor2D {
 	private: System::Windows::Forms::Label^  label1;
 
 	private:
-
+		Graphics ^ ob;
 		float textSize;
 		String ^ textFont;
-		String ^ text;
+		Image ^ obraz;
+		Image ^zwrocObraz;
 private: System::Windows::Forms::ComboBox^  comboBox2;
 private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
 
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -78,11 +85,13 @@ private: System::Windows::Forms::Label^  label2;
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(31, 257);
+			this->button1->Location = System::Drawing::Point(541, 82);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 1;
@@ -93,7 +102,7 @@ private: System::Windows::Forms::Label^  label2;
 			// 
 			this->richTextBox1->Location = System::Drawing::Point(12, 12);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(515, 230);
+			this->richTextBox1->Size = System::Drawing::Size(515, 93);
 			this->richTextBox1->TabIndex = 2;
 			this->richTextBox1->Text = L"";
 			// 
@@ -104,7 +113,7 @@ private: System::Windows::Forms::Label^  label2;
 				L"2", L"4", L"6", L"8", L"10", L"12", L"14", L"16",
 					L"18", L"20", L"22"
 			});
-			this->comboBox1->Location = System::Drawing::Point(541, 83);
+			this->comboBox1->Location = System::Drawing::Point(896, 33);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(69, 21);
 			this->comboBox1->TabIndex = 3;
@@ -146,7 +155,7 @@ private: System::Windows::Forms::Label^  label2;
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Malgun Gothic Semilight", 13, System::Drawing::FontStyle::Bold));
-			this->label1->Location = System::Drawing::Point(537, 57);
+			this->label1->Location = System::Drawing::Point(891, 7);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(164, 25);
 			this->label1->TabIndex = 7;
@@ -159,7 +168,7 @@ private: System::Windows::Forms::Label^  label2;
 				L"Arial", L"Broadway", L"Comic Sans MS", L"Elephant",
 					L"Courier New", L"Ravie", L"Verdana"
 			});
-			this->comboBox2->Location = System::Drawing::Point(541, 143);
+			this->comboBox2->Location = System::Drawing::Point(719, 33);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(160, 21);
 			this->comboBox2->TabIndex = 8;
@@ -170,17 +179,26 @@ private: System::Windows::Forms::Label^  label2;
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Malgun Gothic Semilight", 13, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->label2->Location = System::Drawing::Point(538, 116);
+			this->label2->Location = System::Drawing::Point(714, 5);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(95, 25);
 			this->label2->TabIndex = 9;
 			this->label2->Text = L"Czcionka:";
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Location = System::Drawing::Point(12, 122);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(846, 461);
+			this->pictureBox1->TabIndex = 10;
+			this->pictureBox1->TabStop = false;
+			// 
 			// tekst
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(708, 321);
+			this->ClientSize = System::Drawing::Size(1065, 595);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->label1);
@@ -194,6 +212,7 @@ private: System::Windows::Forms::Label^  label2;
 				static_cast<System::Byte>(238)));
 			this->Name = L"tekst";
 			this->Text = L"tekst";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
