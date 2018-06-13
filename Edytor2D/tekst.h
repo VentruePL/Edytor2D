@@ -22,6 +22,7 @@ namespace Edytor2D {
 			InitializeComponent();	
 			textSize = 10;
 			textFont = "Time New Roman";
+			text = richTextBox1->Text;
 		}
 		
 		
@@ -51,6 +52,7 @@ namespace Edytor2D {
 
 		float textSize;
 		String ^ textFont;
+		String ^ text;
 private: System::Windows::Forms::ComboBox^  comboBox2;
 private: System::Windows::Forms::Label^  label2;
 
