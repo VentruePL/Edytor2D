@@ -21,13 +21,10 @@ namespace Edytor2D {
 		{
 			InitializeComponent();	
 			textSize = 10;
+			
 		}
-
-		/*void setTextSize(int newSize) {
-			textSize = newSize;
-
-
-		}*/
+		
+		
 
 
 	protected:
@@ -53,6 +50,8 @@ namespace Edytor2D {
 	private:
 
 		int textSize;
+private: System::Windows::Forms::ComboBox^  comboBox2;
+private: System::Windows::Forms::Label^  label2;
 
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -74,6 +73,8 @@ namespace Edytor2D {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -87,8 +88,6 @@ namespace Edytor2D {
 			// 
 			// richTextBox1
 			// 
-			/*this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));*/
 			this->richTextBox1->Location = System::Drawing::Point(12, 12);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(515, 230);
@@ -104,7 +103,7 @@ namespace Edytor2D {
 			});
 			this->comboBox1->Location = System::Drawing::Point(541, 83);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(161, 21);
+			this->comboBox1->Size = System::Drawing::Size(69, 21);
 			this->comboBox1->TabIndex = 3;
 			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &tekst::comboBox1_SelectedIndexChanged);
 			// 
@@ -149,13 +148,38 @@ namespace Edytor2D {
 			this->label1->Size = System::Drawing::Size(164, 25);
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"Rozmiar czcionki:";
-			this->label1->Click += gcnew System::EventHandler(this, &tekst::label1_Click);
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
+				L"Arial", L"Broadway", L"Comic Sans MS", L"Elephant",
+					L"Courier New", L"Ravie", L"Verdana"
+			});
+			this->comboBox2->Location = System::Drawing::Point(541, 143);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(160, 21);
+			this->comboBox2->TabIndex = 8;
+			this->comboBox2->SelectedIndexChanged += gcnew System::EventHandler(this, &tekst::comboBox2_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Malgun Gothic Semilight", 13, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label2->Location = System::Drawing::Point(538, 116);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(95, 25);
+			this->label2->TabIndex = 9;
+			this->label2->Text = L"Czcionka:";
 			// 
 			// tekst
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(708, 393);
+			this->ClientSize = System::Drawing::Size(708, 321);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -211,7 +235,7 @@ namespace Edytor2D {
 		}
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		this->richTextBox1->Font = (gcnew System::Drawing::Font(L"textFont", textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(238)));
 	}
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -222,7 +246,31 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
 }
-private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	switch (comboBox2->SelectedIndex) {
+	case 0:
+		textFont == ("Arial");
+		break;
+	/*case 1:
+		textFont = 4;
+		break;
+	case 2:
+		textFont = 6;
+		break;
+	case 3:
+		textFont = 8;
+		break;
+	case 4:
+		textFont = 10;
+		break;
+	case 5:
+		textFont = 12;
+		break;
+	case 6:
+		textFont = 14;
+		break;*/
+
+	}
 }
 };
 }
