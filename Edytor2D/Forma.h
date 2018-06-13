@@ -44,9 +44,6 @@ namespace Edytor2D {
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
-		//	myPen = gcnew Pen(Color::Blue, 4);
-		//	myPen2 = gcnew Pen(Color::Red, 6);
-		//	myPen3 = gcnew Pen(Color::Green);
 			pisak = gcnew Pen(Color::Black);
 			pisak->Width = rozmiarNarzedzia;
 			list = gcnew ArrayList();
@@ -89,7 +86,7 @@ namespace Edytor2D {
 		Image ^ returnedImage;	
 		int rozmiarNarzedzia;
 		Color kolor;
-		//
+
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 
 	protected:
@@ -284,9 +281,6 @@ namespace Edytor2D {
 	}
 	private: System::Void pictureBox1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 		
-		//g->DrawEllipse(myPen, 50, 50, 100, 100);
-		//g->DrawEllipse(myPen, 600, 50, 100, 100);
-		//g->DrawRectangle(myPen2, 300, 15, 150, 150);
 	}
 	private: System::Void pictureBox1_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
@@ -349,9 +343,6 @@ private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, Sy
 			else if (comboBox1->SelectedIndex == 3)
 				g->DrawLine(pisak, point, e->Location);
 
-		//g->DrawLine(myPen, p1.X, p1.Y, e->Location);
-		//	g->DrawLine(myPen, p1.X, p1.Y, p2.X, p2.Y);
-		//	g->DrawLine(myPen, point, e->Location);
 			point = e->Location;
 			pictureBox1->Refresh();
 
