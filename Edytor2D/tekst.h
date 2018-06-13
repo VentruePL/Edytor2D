@@ -21,7 +21,7 @@ namespace Edytor2D {
 		{
 			InitializeComponent();	
 			textSize = 10;
-			
+			textFont = "Time New Roman";
 		}
 		
 		
@@ -49,7 +49,8 @@ namespace Edytor2D {
 
 	private:
 
-		int textSize;
+		float textSize;
+		String ^ textFont;
 private: System::Windows::Forms::ComboBox^  comboBox2;
 private: System::Windows::Forms::Label^  label2;
 
@@ -235,40 +236,40 @@ private: System::Windows::Forms::Label^  label2;
 		}
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->richTextBox1->Font = (gcnew System::Drawing::Font(L"textFont", textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		this->richTextBox1->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(238)));
 	}
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+	this->richTextBox1->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
 }
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", textSize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+	this->richTextBox1->Font = (gcnew System::Drawing::Font(textFont, textSize, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 		static_cast<System::Byte>(238)));
 }
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	switch (comboBox2->SelectedIndex) {
 	case 0:
-		textFont == ("Arial");
+		textFont = (L"Arial");
 		break;
-	/*case 1:
-		textFont = 4;
+	case 1:
+		textFont = (L"Broadway");
 		break;
 	case 2:
-		textFont = 6;
+		textFont = (L"Comic Sans MS");
 		break;
 	case 3:
-		textFont = 8;
+		textFont = (L"Elephant");
 		break;
 	case 4:
-		textFont = 10;
+		textFont = (L"Courier New");
 		break;
 	case 5:
-		textFont = 12;
+		textFont = (L"Ravie");
 		break;
 	case 6:
-		textFont = 14;
-		break;*/
+		textFont = (L"Verdana");
+		break;
 
 	}
 }

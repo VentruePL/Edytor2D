@@ -66,8 +66,8 @@ namespace Edytor2D {
 	private: System::Windows::Forms::ToolStripMenuItem^  zapiszToolStripMenuItem;
 	private: System::Windows::Forms::SaveFileDialog^  saveFileDialog1;
 	private: System::Windows::Forms::ToolStripButton^  toolStripButton7;
-	private: System::Windows::Forms::RichTextBox^  richTextBox1;
-	private: System::Windows::Forms::Button^  button1;
+
+
 
 
 
@@ -91,8 +91,6 @@ namespace Edytor2D {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(workspace::typeid));
 			this->toolStripContainer1 = (gcnew System::Windows::Forms::ToolStripContainer());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
 			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
@@ -140,8 +138,6 @@ namespace Edytor2D {
 			// toolStripContainer1.ContentPanel
 			// 
 			this->toolStripContainer1->ContentPanel->AutoScroll = true;
-			this->toolStripContainer1->ContentPanel->Controls->Add(this->button1);
-			this->toolStripContainer1->ContentPanel->Controls->Add(this->richTextBox1);
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
 			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(918, 501);
 			// 
@@ -159,30 +155,6 @@ namespace Edytor2D {
 			// toolStripContainer1.TopToolStripPanel
 			// 
 			this->toolStripContainer1->TopToolStripPanel->Controls->Add(this->menuStrip1);
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(549, 288);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 3;
-			this->button1->Text = L"close";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Visible = false;
-			this->button1->Click += gcnew System::EventHandler(this, &workspace::button1_Click_1);
-			// 
-			// richTextBox1
-			// 
-			this->richTextBox1->BackColor = System::Drawing::Color::White;
-			this->richTextBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->richTextBox1->Location = System::Drawing::Point(282, 152);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Vertical;
-			this->richTextBox1->Size = System::Drawing::Size(342, 130);
-			this->richTextBox1->TabIndex = 2;
-			this->richTextBox1->Text = L"";
-			this->richTextBox1->Visible = false;
-			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &workspace::richTextBox1_TextChanged_1);
 			// 
 			// pictureBox1
 			// 
@@ -344,25 +316,25 @@ namespace Edytor2D {
 			// wymyœlToolStripMenuItem
 			// 
 			this->wymyœlToolStripMenuItem->Name = L"wymyœlToolStripMenuItem";
-			this->wymyœlToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->wymyœlToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->wymyœlToolStripMenuItem->Text = L"Wymyœl";
 			// 
 			// seToolStripMenuItem
 			// 
 			this->seToolStripMenuItem->Name = L"seToolStripMenuItem";
-			this->seToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->seToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->seToolStripMenuItem->Text = L"Se";
 			// 
 			// coœToolStripMenuItem
 			// 
 			this->coœToolStripMenuItem->Name = L"coœToolStripMenuItem";
-			this->coœToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->coœToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->coœToolStripMenuItem->Text = L"Coœ";
 			// 
 			// bartekToolStripMenuItem
 			// 
 			this->bartekToolStripMenuItem->Name = L"bartekToolStripMenuItem";
-			this->bartekToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->bartekToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			this->bartekToolStripMenuItem->Text = L"Bartek";
 			// 
 			// filtryToolStripMenuItem
@@ -544,8 +516,6 @@ private: System::Void toolStripButton6_Click(System::Object^  sender, System::Ev
 private: System::Void skalowanieToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 	private: System::Void toolStripButton2_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->richTextBox1->Visible = true;
-		this->button1->Visible = true;
 		tekst ^ n = gcnew tekst();
 		n->Show();
 		}
@@ -556,10 +526,6 @@ private: System::Void richTextBox1_TextChanged(System::Object^  sender, System::
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void richTextBox1_TextChanged_1(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-	this->richTextBox1->Visible = false;
-	this->button1->Visible = false;
 }
 };
 }
