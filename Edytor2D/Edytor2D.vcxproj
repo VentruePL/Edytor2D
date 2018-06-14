@@ -135,10 +135,13 @@
   <ItemGroup>
     <ClCompile Include="DrawForm.cpp" />
     <ClCompile Include="farba.cpp" />
+    <ClCompile Include="Forma.cpp" />
     <ClCompile Include="MyUserControl.cpp" />
     <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Scalling.cpp" />
+    <ClCompile Include="Stempel.cpp" />
     <ClCompile Include="szum.cpp" />
+    <ClCompile Include="tekst.cpp" />
     <ClCompile Include="workspace.cpp" />
     <ClCompile Include="wyostrz.cpp" />
   </ItemGroup>
@@ -147,12 +150,15 @@
     <ClInclude Include="farba.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Forma.h" />
     <ClInclude Include="MyUserControl.h" />
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="Scalling.h" />
+    <ClInclude Include="Stempel.h" />
     <ClInclude Include="szum.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="tekst.h" />
     <ClInclude Include="workspace.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -165,11 +171,13 @@
     <EmbeddedResource Include="farba.resx">
       <DependentUpon>farba.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forma.resx" />
     <EmbeddedResource Include="Rotation.resx" />
     <EmbeddedResource Include="Scalling.resx" />
     <EmbeddedResource Include="szum.resx">
       <DependentUpon>szum.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="tekst.resx" />
     <EmbeddedResource Include="workspace.resx">
       <DependentUpon>workspace.h</DependentUpon>
     </EmbeddedResource>

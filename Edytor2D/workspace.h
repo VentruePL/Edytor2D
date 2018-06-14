@@ -6,6 +6,9 @@
 #include "Scalling.h"
 #include "Rotation.h"
 #include "DrawForm.h"
+#include "tekst.h"
+#include "forma.h"
+#include "stempel.h"
 
 namespace Edytor2D {
 
@@ -197,6 +200,7 @@ namespace Edytor2D {
 			this->toolStripButton2->Name = L"toolStripButton2";
 			this->toolStripButton2->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton2->Text = L"Wprowadzanie tekstu";
+			this->toolStripButton2->Click += gcnew System::EventHandler(this, &workspace::toolStripButton2_Click);
 			// 
 			// toolStripButton3
 			// 
@@ -206,6 +210,7 @@ namespace Edytor2D {
 			this->toolStripButton3->Name = L"toolStripButton3";
 			this->toolStripButton3->Size = System::Drawing::Size(30, 20);
 			this->toolStripButton3->Text = L"Stempel";
+			this->toolStripButton3->Click += gcnew System::EventHandler(this, &workspace::toolStripButton3_Click);
 			// 
 			// toolStripButton5
 			// 
@@ -511,7 +516,11 @@ private: System::Void zapiszToolStripMenuItem_Click(System::Object^  sender, Sys
 	}
 }
 private: System::Void toolStripButton1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-
+	Forma ^ forma = gcnew Forma(pictureBox1->Image);
+	forma->ShowDialog();
+	pictureBox1->Image = forma->getImage();
+	wybrany_kolor = forma->kolor;
+	set_icon_kolor();
 }
 private: System::Void toolStripButton6_Click(System::Object^  sender, System::EventArgs^  e) {
 	
@@ -567,6 +576,16 @@ private: System::Void toolStripButton5_Click(System::Object^  sender, System::Ev
 	pictureBox1->Image = draw_f->getImage();
 	wybrany_kolor = draw_f->getColor();
 	set_icon_kolor();
+}
+private: System::Void toolStripButton2_Click(System::Object^  sender, System::EventArgs^  e) {
+	tekst ^ tekst_f = gcnew tekst(pictureBox1->Image);
+	tekst_f->Show();
+	pictureBox1->Image = tekst_f->zwrocObraz;
+}
+private: System::Void toolStripButton3_Click(System::Object^  sender, System::EventArgs^  e) {
+	Stempel ^ stempel_s = gcnew Stempel(pictureBox1->Image);
+	stempel_s->ShowDialog();
+	pictureBox1->Image = stempel_s->getImage();
 }
 };
 }

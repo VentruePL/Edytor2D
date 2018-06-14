@@ -1,0 +1,2 @@
+#include "Stempel.h"
+
