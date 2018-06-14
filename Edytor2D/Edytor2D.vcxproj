@@ -136,6 +136,7 @@
     <ClCompile Include="DrawForm.cpp" />
     <ClCompile Include="farba.cpp" />
     <ClCompile Include="Forma.cpp" />
+    <ClCompile Include="Jasnosc1.cpp" />
     <ClCompile Include="MyUserControl.cpp" />
     <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Scalling.cpp" />
@@ -151,6 +152,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Forma.h" />
+    <ClInclude Include="Jasnosc1.h" />
     <ClInclude Include="MyUserControl.h" />
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="Scalling.h" />
@@ -172,6 +174,7 @@
       <DependentUpon>farba.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forma.resx" />
+    <EmbeddedResource Include="Jasnosc1.resx" />
     <EmbeddedResource Include="Rotation.resx" />
     <EmbeddedResource Include="Scalling.resx" />
     <EmbeddedResource Include="szum.resx">
