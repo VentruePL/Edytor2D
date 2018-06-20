@@ -136,7 +136,6 @@
     <ClCompile Include="DrawForm.cpp" />
     <ClCompile Include="farba.cpp" />
     <ClCompile Include="Forma.cpp" />
-    <ClCompile Include="Jasnosc.cpp" />
     <ClCompile Include="Jasnosc1.cpp" />
     <ClCompile Include="MyUserControl.cpp" />
     <ClCompile Include="Rotation.cpp" />
@@ -153,7 +152,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Forma.h" />
-    <ClInclude Include="Jasnosc.h" />
     <ClInclude Include="Jasnosc1.h" />
     <ClInclude Include="MyUserControl.h" />
     <ClInclude Include="Rotation.h" />
