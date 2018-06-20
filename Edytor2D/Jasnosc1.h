@@ -120,12 +120,13 @@ namespace Edytor2D {
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox2->TabIndex = 3;
 			this->pictureBox2->TabStop = false;
+			this->pictureBox2->Click += gcnew System::EventHandler(this, &Jasnosc::pictureBox2_Click);
 			// 
 			// button1
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->button1->Location = System::Drawing::Point(990, 358);
+			this->button1->Location = System::Drawing::Point(986, 359);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(148, 82);
 			this->button1->TabIndex = 5;
@@ -184,6 +185,7 @@ namespace Edytor2D {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
 		}
 #pragma endregion
 	private: System::Void Jasnosc_Load(System::Object^  sender, System::EventArgs^  e) {
@@ -252,8 +254,8 @@ namespace Edytor2D {
 			Balans[3] = max[3] - min[3];
 
 			bt = (this->maxbeta - this->minbeta) / 2;
-			//blue = ((((rgbValues[k] / 255.0) - 0.5) *
-			//brightnessLevel) + 0.5) * 255.0;
+			
+
 			if (rgbValues[k] < mid[0] && beta > 0) {
 				tempRGB[0] = 255 - rgbValues[k];
 				Balans[0] = -(rgbValues[k] - min[0]);
@@ -318,20 +320,12 @@ namespace Edytor2D {
 				tempRGB[3] = rgbValues[k + 3];
 				Balans[3] = rgbValues[k + 3] - mid[3];
 			}
-
-			blue = rgbValues[k] + tempRGB[0] * brightnessLevel + (Balans[0] / bt) * beta;
-
-			//green = ((((rgbValues[k + 1] / 255.0) - 0.5) *
-			//brightnessLevel) + 0.5) * 255.0;
-			green = rgbValues[k + 1] + tempRGB[1] * brightnessLevel + (Balans[1] / bt) * beta;
-
-			//red = ((((rgbValues[k + 2] / 255.0) - 0.5) *
-			//brightnessLevel) + 0.5) * 255.0;
+			
+			blue = rgbValues[k] + tempRGB[0] * brightnessLevel + (Balans[0] / bt) * beta;			
+			green = rgbValues[k + 1] + tempRGB[1] * brightnessLevel + (Balans[1] / bt) * beta;			
 			red = rgbValues[k + 2] + tempRGB[3] * brightnessLevel + (Balans[2] / bt) * beta;
-
-			//alpha = ((((rgbValues[k + 3] / 255.0) - 0.5) *
-			//brightnessLevel) + 0.5) * 255.0;
 			alpha = rgbValues[k + 3] + tempRGB[3] * brightnessLevel + (Balans[3] / bt) * beta;
+
 
 			if (red > 255)
 			{
@@ -433,5 +427,7 @@ private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs
 	returnedImage = pictureBox2->Image;
 }
 		
+private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 }
