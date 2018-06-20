@@ -56,20 +56,14 @@ namespace Edytor2D {
 		double brightnessLevel;
 		double beta;
 		Image ^ returnedImage;
-		
-
-
 	
 	private: System::Windows::Forms::TrackBar^  trackBar1;
-	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::TrackBar^  trackBar2;
-
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Label^  label4;
 			 
 			 /// <summary>
 		/// Wymagana zmienna projektanta.
@@ -84,14 +78,12 @@ namespace Edytor2D {
 		void InitializeComponent(void)
 		{
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->trackBar2 = (gcnew System::Windows::Forms::TrackBar());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -101,7 +93,7 @@ namespace Edytor2D {
 			// trackBar1
 			// 
 			this->trackBar1->LargeChange = 2;
-			this->trackBar1->Location = System::Drawing::Point(979, 55);
+			this->trackBar1->Location = System::Drawing::Point(962, 100);
 			this->trackBar1->Maximum = 255;
 			this->trackBar1->Name = L"trackBar1";
 			this->trackBar1->Size = System::Drawing::Size(192, 45);
@@ -109,24 +101,13 @@ namespace Edytor2D {
 			this->trackBar1->Value = 127;
 			this->trackBar1->Scroll += gcnew System::EventHandler(this, &Jasnosc::trackBar1_Scroll);
 			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->label1->Location = System::Drawing::Point(1041, 85);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(70, 25);
-			this->label1->TabIndex = 2;
-			this->label1->Text = L"label1";
-			// 
 			// trackBar2
 			// 
 			this->trackBar2->LargeChange = 2;
-			this->trackBar2->Location = System::Drawing::Point(995, 166);
+			this->trackBar2->Location = System::Drawing::Point(962, 213);
 			this->trackBar2->Maximum = 255;
 			this->trackBar2->Name = L"trackBar2";
-			this->trackBar2->Size = System::Drawing::Size(176, 45);
+			this->trackBar2->Size = System::Drawing::Size(192, 45);
 			this->trackBar2->TabIndex = 4;
 			this->trackBar2->Value = 127;
 			this->trackBar2->Scroll += gcnew System::EventHandler(this, &Jasnosc::trackBar2_Scroll);
@@ -144,9 +125,9 @@ namespace Edytor2D {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->button1->Location = System::Drawing::Point(1024, 464);
+			this->button1->Location = System::Drawing::Point(990, 358);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(111, 49);
+			this->button1->Size = System::Drawing::Size(148, 82);
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"ZAPISZ";
 			this->button1->UseVisualStyleBackColor = true;
@@ -165,7 +146,7 @@ namespace Edytor2D {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->label2->Location = System::Drawing::Point(1043, 28);
+			this->label2->Location = System::Drawing::Point(1026, 77);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(68, 20);
 			this->label2->TabIndex = 6;
@@ -176,36 +157,23 @@ namespace Edytor2D {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->label3->Location = System::Drawing::Point(1053, 143);
+			this->label3->Location = System::Drawing::Point(1026, 190);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(58, 20);
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Balans";
 			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->label4->Location = System::Drawing::Point(1054, 244);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(45, 20);
-			this->label4->TabIndex = 8;
-			this->label4->Text = L"RGB";
-			// 
 			// Jasnosc
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1208, 558);
-			this->Controls->Add(this->label4);
+			this->ClientSize = System::Drawing::Size(1186, 522);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->trackBar2);
-			this->Controls->Add(this->label1);
 			this->Controls->Add(this->trackBar1);
 			this->Name = L"Jasnosc";
 			this->Text = L"Korekcja kolorów";
@@ -216,20 +184,11 @@ namespace Edytor2D {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 	private: System::Void Jasnosc_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
-		
-			 /*
-	private: System::Void OnChange(System::Object^  sender, System::EventArgs^  e) {
-			 value = (float)trackBar1->Value;
-			 label1->Text = String::Format("{0:0.00}", value);
-			 }
-			 */
-	
-	
+
 	private:  Bitmap ^ Balans(Bitmap^ sourceBitmap, double brightnessLevel, double beta)
 	{
 		  
@@ -242,7 +201,6 @@ namespace Edytor2D {
 
 		System::Runtime::InteropServices::Marshal::Copy(ptr, rgbValues, 0, bytes);
 
-
 		sourceBitmap->UnlockBits(sourceData); 											
 
 		double min[] = { rgbValues[0],rgbValues[1],rgbValues[2],rgbValues[3] };
@@ -254,11 +212,10 @@ namespace Edytor2D {
 		double alpha = 0;
 		double bt;
 		double tempRGB[4];
-		double contrast[] = { 0,0,0,0 };
+		double Balans[] = { 0,0,0,0 };
 		int tolerance = 5; 
 		int region = tolerance; 
 		int start = 0;
-
 
 		// liczenie rgb
 		for (int k = 0; k + 4 < rgbValues->Length; k += 4)
@@ -289,94 +246,92 @@ namespace Edytor2D {
 			mid[2] = (max[2] + min[2]) / 2;
 			mid[3] = (max[3] + min[3]) / 2;
 
-			contrast[0] = max[0] - min[0];
-			contrast[1] = max[1] - min[1];
-			contrast[2] = max[2] - min[2];
-			contrast[3] = max[3] - min[3];
+			Balans[0] = max[0] - min[0];
+			Balans[1] = max[1] - min[1];
+			Balans[2] = max[2] - min[2];
+			Balans[3] = max[3] - min[3];
 
 			bt = (this->maxbeta - this->minbeta) / 2;
 			//blue = ((((rgbValues[k] / 255.0) - 0.5) *
 			//brightnessLevel) + 0.5) * 255.0;
 			if (rgbValues[k] < mid[0] && beta > 0) {
 				tempRGB[0] = 255 - rgbValues[k];
-				contrast[0] = -(rgbValues[k] - min[0]);
+				Balans[0] = -(rgbValues[k] - min[0]);
 			}
 			else if (rgbValues[k] > mid[0] && beta > 0) {
 				tempRGB[0] = rgbValues[k];
-				contrast[0] = max[0] - rgbValues[k];
+				Balans[0] = max[0] - rgbValues[k];
 			}
 			else if (rgbValues[k] < mid[0] && beta < 0) {
 				tempRGB[0] = 255 - rgbValues[k];
-				contrast[0] = -(mid[0] - rgbValues[k]);
+				Balans[0] = -(mid[0] - rgbValues[k]);
 			}
 			else if (rgbValues[k] > mid[0] && beta < 0) {
 				tempRGB[0] = rgbValues[k];
-				contrast[0] = rgbValues[k] - mid[0];
+				Balans[0] = rgbValues[k] - mid[0];
 			}
 			if (rgbValues[k + 1] < mid[1] && beta > 0) {
 				tempRGB[1] = 255 - rgbValues[k + 1];
-				contrast[1] = -(rgbValues[k + 1] - min[1]);
+				Balans[1] = -(rgbValues[k + 1] - min[1]);
 			}
 			else if (rgbValues[k + 1] > mid[1] && beta > 0) {
 				tempRGB[1] = rgbValues[k + 1];
-				contrast[1] = max[1] - rgbValues[k + 1];
+				Balans[1] = max[1] - rgbValues[k + 1];
 			}
 			else if (rgbValues[k + 1] < mid[1] && beta < 0) {
 				tempRGB[1] = 255 - rgbValues[k + 1];
-				contrast[1] = -(mid[1] - rgbValues[k + 1]);
+				Balans[1] = -(mid[1] - rgbValues[k + 1]);
 			}
 			else if (rgbValues[k + 1] > mid[1] && beta < 0) {
 				tempRGB[1] = rgbValues[k + 1];
-				contrast[1] = rgbValues[k + 1] - mid[1];
+				Balans[1] = rgbValues[k + 1] - mid[1];
 			}
 			if (rgbValues[k + 2] < mid[2] && beta > 0) {
 				tempRGB[2] = 255 - rgbValues[k + 2];
-				contrast[2] = -(rgbValues[k + 2] - min[2]);
+				Balans[2] = -(rgbValues[k + 2] - min[2]);
 			}
 			else if (rgbValues[k + 2] > mid[2] && beta > 0) {
 				tempRGB[2] = rgbValues[k + 2];
-				contrast[2] = max[2] - rgbValues[k + 2];
+				Balans[2] = max[2] - rgbValues[k + 2];
 			}
 			else if (rgbValues[k + 2] < mid[2] && beta < 0) {
 				tempRGB[2] = 255 - rgbValues[k + 2];
-				contrast[2] = -(mid[2] - rgbValues[k + 2]);
+				Balans[2] = -(mid[2] - rgbValues[k + 2]);
 			}
 			else if (rgbValues[k + 2] > mid[2] && beta < 0) {
 				tempRGB[2] = rgbValues[k + 2];
-				contrast[2] = rgbValues[k + 2] - mid[2];
+				Balans[2] = rgbValues[k + 2] - mid[2];
 			}
 			if (rgbValues[k + 3] < mid[3] && beta > 0) {
 				tempRGB[3] = 255 - rgbValues[k + 3];
-				contrast[3] = -(rgbValues[k + 3] - min[3]);
+				Balans[3] = -(rgbValues[k + 3] - min[3]);
 			}
 			else if (rgbValues[k + 3] > mid[3] && beta > 0) {
 				tempRGB[3] = rgbValues[k + 3];
-				contrast[3] = max[3] - rgbValues[k + 3];
+				Balans[3] = max[3] - rgbValues[k + 3];
 			}
 			else if (rgbValues[k + 3] < mid[3] && beta < 0) {
 				tempRGB[3] = 255 - rgbValues[k + 3];
-				contrast[3] = -(mid[3] - rgbValues[k + 3]);
+				Balans[3] = -(mid[3] - rgbValues[k + 3]);
 			}
 			else if (rgbValues[k + 3] > mid[3] && beta < 0) {
 				tempRGB[3] = rgbValues[k + 3];
-				contrast[3] = rgbValues[k + 3] - mid[3];
+				Balans[3] = rgbValues[k + 3] - mid[3];
 			}
 
-
-
-			blue = rgbValues[k] + tempRGB[0] * brightnessLevel + (contrast[0] / bt) * beta;
+			blue = rgbValues[k] + tempRGB[0] * brightnessLevel + (Balans[0] / bt) * beta;
 
 			//green = ((((rgbValues[k + 1] / 255.0) - 0.5) *
 			//brightnessLevel) + 0.5) * 255.0;
-			green = rgbValues[k + 1] + tempRGB[1] * brightnessLevel + (contrast[1] / bt) * beta;
+			green = rgbValues[k + 1] + tempRGB[1] * brightnessLevel + (Balans[1] / bt) * beta;
 
 			//red = ((((rgbValues[k + 2] / 255.0) - 0.5) *
 			//brightnessLevel) + 0.5) * 255.0;
-			red = rgbValues[k + 2] + tempRGB[3] * brightnessLevel + (contrast[2] / bt) * beta;
+			red = rgbValues[k + 2] + tempRGB[3] * brightnessLevel + (Balans[2] / bt) * beta;
 
 			//alpha = ((((rgbValues[k + 3] / 255.0) - 0.5) *
 			//brightnessLevel) + 0.5) * 255.0;
-			alpha = rgbValues[k + 3] + tempRGB[3] * brightnessLevel + (contrast[3] / bt) * beta;
+			alpha = rgbValues[k + 3] + tempRGB[3] * brightnessLevel + (Balans[3] / bt) * beta;
 
 			if (red > 255)
 			{
@@ -403,13 +358,7 @@ namespace Edytor2D {
 			else if (blue < 0)
 			{
 				blue = 0;
-			}
-
-
-			
-
-
-			
+			}					
 
 			// umieszczanie koncowych wartosci rgb w tablicy bajtów
 			rgbValues[k] = System::Convert::ToByte(blue);
@@ -429,21 +378,6 @@ namespace Edytor2D {
 
 
 		return sourceBitmap;
-	}
-	   private: System::Void button1_Click1(System::Object^  sender, System::EventArgs^  e) {
-		if (pictureBox1->Image != nullptr)
-		{
-		}
-
-		OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
-		this->trackBar1->Value = (this->trackBar1->Maximum - this->trackBar1->Minimum) / 2;
-		this->trackBar2->Value = (this->trackBar2->Maximum - this->trackBar2->Minimum) / 2;
-
-		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-		{
-			if ((myStream = openFileDialog1->OpenFile()) != nullptr)
-			{
-			}		}
 	}
 
 	private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
